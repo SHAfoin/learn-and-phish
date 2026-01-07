@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+ 
+  --background-gradient: radial-gradient(
+    circle at top center, 
+    #006E99 6%,   
+    #061935 94%   
+  );
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -10,17 +15,75 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Ocean */
+  --color-ocean-50: #F0FAFF;
+  --color-ocean-100: #D8F7FD;
+  --color-ocean-200: #B1F0FB;
+  --color-ocean-300: #9DECFB;
+  --color-ocean-400: #60E2FB;
+  --color-ocean-500: #1FD6F9;
+  --color-ocean-600: #27AED3;
+  --color-ocean-700: #2C86AA;
+  --color-ocean-800: #006E99;
+  --color-ocean-850: #2C86AA;
+  --color-ocean-900: #003457;
+  --color-ocean-950: #061935;
+
+  /* Seaweed */
+  --color-seaweed-50: #FCFDFA;
+  --color-seaweed-100: #F3F8EA;
+  --color-seaweed-200: #E2EECC;
+  --color-seaweed-300: #D0E4AD;
+  --color-seaweed-400: #BFDB8E;
+  --color-seaweed-500: #ADD16F;
+  --color-seaweed-600: #9CC750;
+  --color-seaweed-700: #88B43A;
+  --color-seaweed-800: #688A2C;
+  --color-seaweed-900: #485F1F;
+  --color-seaweed-950: #384A18;
+
+  /* Sand */
+  --color-sand-50: #FDF6EB;
+  --color-sand-100: #FBEED9;
+  --color-sand-200: #F7DFB4;
+  --color-sand-300: #F3CF8F;
+  --color-sand-400: #EFBF6A;
+  --color-sand-500: #EAA937;
+  --color-sand-600: #D28F17;
+  --color-sand-700: #A06C11;
+  --color-sand-800: #6D4A0C;
+  --color-sand-900: #3A2706;
+  --color-sand-950: #211604;
+
+  /* Neutral */
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E5E5E5;
+  --color-neutral-300: #D4D4D4;
+  --color-neutral-400: #A3A3A3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+
+  /* Quiz */
+  --color-quiz-easy: #9CC750;
+  --color-quiz-medium: #EAA937;
+  --color-quiz-hard: #EA3737;
+
+
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
+  background-image: var(--background-gradient);
+  background-attachment: fixed; 
+  background-size: cover;
+  min-height: 100vh;
+  margin: 10;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /*to see font-family*/
 }
