@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function page() {
   return (
@@ -20,10 +21,14 @@ export default function page() {
           </div>
         </div>
         <div className="flex w-full gap-5">
-          <Button className="flex-1" variant={"outline"}>
-            S'inscrire
-          </Button>
-          <Button className="flex-1">Continuer</Button>
+          <Link className="flex-1" href="/home/signup">
+            <Button className="w-full" variant={"outline"}>
+              S'inscrire
+            </Button>
+          </Link>
+          <Link className="flex-1" href="/home">
+            <Button className="w-full">Continuer</Button>
+          </Link>
         </div>
       </div>
     </div>
