@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./home.module.css";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -9,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         }
       >
         {/* Div des backgrounds (nuages, vagues) */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             className={
               "absolute z-50 left-1/8 top-1/3 " + styles["animate-float-1"]
@@ -41,7 +42,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             alt=""
           />
         </div>
-        {children}
+        <div className="relative z-10 h-full flex flex-col">
+          {children}
+          <div className="flex gap-6 justify-center mb-2 text-white">
+            <Link
+              href="/politique-de-confidentialite"
+              className="hover:underline"
+            >
+              Politique de confidentialité
+            </Link>
+            <Link href="/traitement-des-donnees" className="hover:underline">
+              Traitement des données
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

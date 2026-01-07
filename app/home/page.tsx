@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function page() {
   return (
-    <div className="relative z-10 flex flex-col items-center justify-between h-full p-2 text-center">
+    <div className="flex flex-col items-center gap-50 flex-1 p-2 text-center">
       <h1 className="text-9xl font-bold mt-20 ocean-gradient">LEARN & PHISH</h1>
       <div className="flex flex-col gap-5 items-center text-white ">
         <h2 className="text-5xl font-bold">
@@ -21,18 +21,10 @@ export default function page() {
             pourrait bien sauvegarder vos données !
           </p>
         </div>
-        <Link href="/login">
+        <Link href="/home/login">
           <Button className="text-2xl px-6 py-9 font-bold">
             Plongez et démarrez le phishing
           </Button>
-        </Link>
-      </div>
-      <div className="flex gap-6 text-white">
-        <Link href="/politique-de-confidentialite" className="hover:underline">
-          Politique de confidentialité
-        </Link>
-        <Link href="/traitement-des-donnees" className="hover:underline">
-          Traitement des données
         </Link>
       </div>
     </div>
