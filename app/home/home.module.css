@@ -1,0 +1,85 @@
+.home {
+  background-color: var(--color-ocean-100);
+}
+
+.page-background {
+  background-image: url("/svg/vagues.svg");
+
+  background-position: center 75px;
+  background-repeat: no-repeat;
+}
+
+/* Animations pour les éléments marins */
+@keyframes float-left-right-1 {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    transform: translateX(25px) translateY(-8px);
+  }
+  50% {
+    transform: translateX(45px) translateY(0px);
+  }
+  75% {
+    transform: translateX(25px) translateY(8px);
+  }
+}
+
+@keyframes float-left-right-2 {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  33% {
+    transform: translateX(-30px) translateY(-5px);
+  }
+  66% {
+    transform: translateX(30px) translateY(5px);
+  }
+}
+
+@keyframes float-left-right-3 {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  20% {
+    transform: translateX(40px) translateY(-12px);
+  }
+  40% {
+    transform: translateX(-15px) translateY(6px);
+  }
+  60% {
+    transform: translateX(50px) translateY(-3px);
+  }
+  80% {
+    transform: translateX(8px) translateY(9px);
+  }
+}
+
+@keyframes float-left-right-4 {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(-45px) translateY(-6px);
+  }
+}
+
+.animate-float-1 {
+  animation: float-left-right-1 8s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-left-right-2 10s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-left-right-3 12s ease-in-out infinite;
+}
+
+.animate-float-4 {
+  animation: float-left-right-4 9s ease-in-out infinite;
+}
