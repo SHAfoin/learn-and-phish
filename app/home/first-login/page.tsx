@@ -21,7 +21,10 @@ export default function page() {
             <Checkbox id="terms" />
             <label htmlFor="terms">
               J'accepte les{" "}
-              <Link className="underline text-ocean-700" href="/home/terms">
+              <Link
+                className="underline text-ocean-700"
+                href="/home/conditions-d-utilisation"
+              >
                 conditions d'utilisation
               </Link>
             </label>

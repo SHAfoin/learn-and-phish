@@ -46,13 +46,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
           <div className="flex gap-6 justify-center mb-2 text-white">
             <Link
-              href="/politique-de-confidentialite"
+              href="/home/politique-de-confidentialite"
               className="hover:underline"
             >
               Politique de confidentialité
             </Link>
-            <Link href="/traitement-des-donnees" className="hover:underline">
-              Traitement des données
+            <Link
+              href="/home/conditions-d-utilisation"
+              className="hover:underline"
+            >
+              Conditions d'utilisation
             </Link>
           </div>
         </div>
