@@ -1,4 +1,4 @@
-import styles from "./app.module.css";
+import Sidebar from "@/components/ui/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,8 +6,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <img
         src="/svg/vagues.svg"
         alt="Rotated Image"
-        className="fixed -left-[300px] -top-[100px] z-0"
+        className="fixed -left-[300px] -top-[100px] -z-10 pointer-events-none"
       />
+      <Sidebar></Sidebar>
       {children}
     </div>
   );
