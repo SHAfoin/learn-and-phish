@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
 
 export default function Sidebar() {
   return (
@@ -73,7 +73,23 @@ export default function Sidebar() {
             </span>
           </Link>
         </div>
-        <img src="" alt="Mon profile" className="w-12 h-12" />
+
+        <Link
+          className="relative w-12 h-12 shrink-0 group flex items-center justify-center overflow-visible transition-all"
+          href={""}
+        >
+          <div className="relative w-12 h-12 rounded-full overflow-hidden transition-all">
+            <Image
+              src="/test/fake_profile.png"
+              fill
+              alt="Photo de profil"
+              className="object-cover"
+            />
+          </div>
+          <span className="pointer-events-none absolute left-full h-full ml-2 whitespace-nowrap rounded-lg bg-ocean-700 px-6 text-md content-center font-bold text-white opacity-0 transition-all duration-200 ease-out -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0">
+            Mon profil
+          </span>
+        </Link>
       </div>
     </div>
   );
