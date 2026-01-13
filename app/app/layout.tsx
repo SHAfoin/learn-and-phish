@@ -1,3 +1,4 @@
+import TutorielButton from "@/components/TutorielButton";
 import Sidebar from "@/components/ui/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -9,7 +10,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className="fixed -left-[300px] -top-[100px] -z-10 pointer-events-none"
       />
       <Sidebar></Sidebar>
-      {children}
+      <div className="pl-100 pt-8 flex gap-20 pr-8">
+        {children}
+        <TutorielButton />
+      </div>
     </div>
   );
 }
