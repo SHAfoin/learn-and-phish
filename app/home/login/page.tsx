@@ -26,7 +26,7 @@ export default function page() {
               S'inscrire
             </Button>
           </Link>
-          <Link className="flex-1" href="/home">
+          <Link className="flex-1" href="/app">
             <Button className="w-full">Continuer</Button>
           </Link>
         </div>
