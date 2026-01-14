@@ -1,5 +1,6 @@
 import ProfileHeader from "@/components/ProfileHeader";
 import QuestTile from "@/components/QuestTile";
+import WorldProgressWidget from "@/components/WorldProgressWidget";
 import React from "react";
 
 export default function page() {
@@ -14,9 +15,10 @@ export default function page() {
         streak={5}
         className="mb-2"
       />
-      <div className="flex w-full gap-6">
+      <div className="flex w-full gap-6 h-fit">
         <div className="flex flex-col gap-3 flex-2">
           <h2 className="text-2xl text-ocean-950 font-bold">Mon parcours</h2>
+          <WorldProgressWidget />
         </div>
         <div className="flex flex-col gap-3 flex-1">
           <h2 className="text-2xl text-ocean-950 font-bold">Quêtes</h2>
