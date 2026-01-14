@@ -1,12 +1,16 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ProfileHeader() {
+export default function ProfileHeader({ className }: { className?: string }) {
   const progress = (1500 / 2000) * 100; // 75%
   const pathLength = 800;
   const completedLength = (pathLength * progress) / 100;
   return (
-    <div className="w-full bg-ocean-700 flex px-8 py-4 gap-8 text-white font-bold rounded-xl">
+    <div
+      className={`w-full bg-ocean-700 flex px-8 py-4 gap-8 text-white font-bold rounded-xl ${
+        className || ""
+      }`}
+    >
       <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0 border-10 border-white">
         <Image
           src="/test/fake_profile.png"

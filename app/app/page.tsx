@@ -5,7 +5,7 @@ import React from "react";
 export default function page() {
   return (
     <div className="flex flex-col flex-1 gap-6">
-      <ProfileHeader />
+      <ProfileHeader className="mb-2" />
       <div className="flex w-full gap-6">
         <div className="flex flex-col gap-3 flex-2">
           <h2 className="text-2xl text-ocean-950 font-bold">Mon parcours</h2>
