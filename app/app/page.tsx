@@ -13,9 +13,27 @@ export default function page() {
         <div className="flex flex-col gap-3 flex-1">
           <h2 className="text-2xl text-ocean-950 font-bold">Quêtes</h2>
           <div className="flex flex-col gap-2 w-full">
-            <QuestTile />
-            <QuestTile />
-            <QuestTile />
+            <QuestTile
+              progression={3}
+              maxValue={5}
+              titre="Compléter 5 modules"
+              frequence="Hebdomadaire"
+              iconUrl="/svg/icons/admin.svg"
+            />
+            <QuestTile
+              progression={7}
+              maxValue={10}
+              titre="Détecter les phishing"
+              frequence="Quotidienne"
+              iconUrl="/svg/icons/admin.svg"
+            />
+            <QuestTile
+              progression={2}
+              maxValue={3}
+              titre="Maîtriser les mots de passe"
+              frequence="Mensuelle"
+              iconUrl="/svg/icons/admin.svg"
+            />
           </div>
         </div>
       </div>
