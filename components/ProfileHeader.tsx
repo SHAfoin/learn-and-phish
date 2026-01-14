@@ -1,8 +1,26 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ProfileHeader({ className }: { className?: string }) {
-  const progress = (1500 / 2000) * 100; // 75%
+interface ProfileHeaderProps {
+  imageUrl: string;
+  progression: number;
+  max: number;
+  nom: string;
+  niveau: number;
+  streak: number;
+  className?: string;
+}
+
+export default function ProfileHeader({
+  imageUrl,
+  progression,
+  max,
+  nom,
+  niveau,
+  streak,
+  className,
+}: ProfileHeaderProps) {
+  const progress = (progression / max) * 100;
   const pathLength = 800;
   const completedLength = (pathLength * progress) / 100;
   return (
@@ -13,7 +31,7 @@ export default function ProfileHeader({ className }: { className?: string }) {
     >
       <div className="relative w-24 h-24 rounded-full overflow-hidden shrink-0 border-10 border-white">
         <Image
-          src="/test/fake_profile.png"
+          src={imageUrl}
           fill
           alt="Photo de profil"
           className="object-cover"
@@ -21,26 +39,29 @@ export default function ProfileHeader({ className }: { className?: string }) {
       </div>
       <div className="flex flex-col flex-1">
         <div className="flex gap-4">
-          <h1 className="text-5xl">Bonjour Abla !</h1>
+          <h1 className="text-5xl">Bonjour {nom} !</h1>
 
           <div className="flex items-end gap-2">
             <span className="bg-white  text-ocean-900 rounded-md px-2 py-1 text-sm h-fit">
-              Niveau 12
+              Niveau {niveau}
             </span>
-            {/* <Image /> */}
-            <div className="flex ">
-              <Image
-                src="/svg/icons/fire.svg"
-                width={20}
-                height={20}
-                alt="Streak icone"
-              />
-              <span className="text-sm py-1 ">5 jours !</span>
-            </div>
+            {streak > 0 && (
+              <div className="flex ">
+                <Image
+                  src="/svg/icons/fire.svg"
+                  width={20}
+                  height={20}
+                  alt="Streak icone"
+                />
+                <span className="text-sm py-1 ">{streak} jours !</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <span>1500 / 2000 points</span>
+          <span>
+            {progression} / {max} points
+          </span>
           <div className="relative w-full h-8">
             <svg
               viewBox="-10 0 820 40"

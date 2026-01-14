@@ -6,6 +6,7 @@ interface QuestTileProps {
   titre: string;
   frequence: string;
   iconUrl: string;
+  className?: string;
 }
 
 export default function QuestTile({
@@ -14,10 +15,15 @@ export default function QuestTile({
   titre,
   frequence,
   iconUrl,
+  className,
 }: QuestTileProps) {
   const progressPercentage = (progression / maxValue) * 100;
   return (
-    <div className="flex rounded-2xl px-4 py-3 flex-col w-full min-w-sm bg-neutral-100 gap-2">
+    <div
+      className={`flex rounded-2xl px-4 py-3 flex-col w-full min-w-sm bg-neutral-100 gap-2 ${
+        className || ""
+      }`}
+    >
       <div className="flex items-end justify-between gap-6">
         <h3 className="text-lg font-semibold">{titre}</h3>
         <span className="text-sm text-neutral-600">{frequence}</span>
