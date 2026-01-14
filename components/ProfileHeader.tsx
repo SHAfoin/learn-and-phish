@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ProfileHeader() {
   const progress = (1500 / 2000) * 100; // 75%
-  const pathLength = 400;
+  const pathLength = 800;
   const completedLength = (pathLength * progress) / 100;
   return (
     <div className="w-full bg-ocean-700 flex px-8 py-4 gap-8 text-white font-bold rounded-xl">
@@ -39,19 +39,19 @@ export default function ProfileHeader() {
           <span>1500 / 2000 points</span>
           <div className="relative w-full h-8">
             <svg
-              viewBox="10 0 400 40"
+              viewBox="-10 0 820 40"
               className="w-full h-full"
               preserveAspectRatio="none"
             >
               <path
-                d="M 0 20 Q 20 5, 40 20 T 80 20 T 120 20 T 160 20 T 200 20 T 240 20 T 280 20 T 320 20 T 360 20 T 400 20"
+                d="M 0 20 Q 20 5, 40 20 T 80 20 T 120 20 T 160 20 T 200 20 T 240 20 T 280 20 T 320 20 T 360 20 T 400 20 T 440 20 T 480 20 T 520 20 T 560 20 T 600 20 T 640 20 T 680 20 T 720 20 T 760 20 T 800 20"
                 stroke="white"
                 strokeWidth="16"
                 fill="none"
                 strokeLinecap="round"
               />
               <path
-                d="M 0 20 Q 20 5, 40 20 T 80 20 T 120 20 T 160 20 T 200 20 T 240 20 T 280 20 T 320 20 T 360 20 T 400 20"
+                d="M 0 20 Q 20 5, 40 20 T 80 20 T 120 20 T 160 20 T 200 20 T 240 20 T 280 20 T 320 20 T 360 20 T 400 20 T 440 20 T 480 20 T 520 20 T 560 20 T 600 20 T 640 20 T 680 20 T 720 20 T 760 20 T 800 20"
                 stroke="#1fd6f9"
                 strokeWidth="16"
                 fill="none"
