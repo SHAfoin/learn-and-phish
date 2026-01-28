@@ -3,6 +3,7 @@ import Image from "next/image";
 export default function StreakProgressWidget() {
   const progression = 60; // Pourcentage de progression (0-100)
   const objective = 8;
+  const doneToday = true;
 
   return (
     <div className="w-full bg-neutral-100 flex rounded-2xl overflow-hidden">
@@ -29,11 +30,12 @@ export default function StreakProgressWidget() {
           <span className="text-5xl text-sand-500">5</span> jours réalisés
         </h2>
         <p className="text-ocean-900">Prêt pour le prochain quiz ?</p>
-        <Image
-          src="/png/coin_shinning.png"
-          width={170}
-          height={170}
-          alt="Quiz Icon"
+        <img
+          src={doneToday ? "/png/coin.png" : "/png/coin_disabled.png"}
+          width={150}
+          height={150}
+          alt="Coin Icon"
+          className="mt-4"
         />
       </div>
     </div>
