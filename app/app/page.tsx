@@ -1,11 +1,12 @@
 import ProfileHeader from "@/components/ProfileHeader";
 import QuestTile from "@/components/QuestTile";
+import StreakProgressWidget from "@/components/StreakProgressWidget";
 import WorldProgressWidget from "@/components/WorldProgressWidget";
 import React from "react";
 
 export default function page() {
   return (
-    <div className="flex flex-col flex-1 gap-6">
+    <div className="flex flex-col flex-1 gap-3">
       <ProfileHeader
         imageUrl="/test/fake_profile.png"
         progression={1500}
@@ -45,6 +46,18 @@ export default function page() {
               iconUrl="/svg/icons/admin.svg"
             />
           </div>
+        </div>
+      </div>
+      <div className="flex w-full gap-6 h-fit">
+        <div className="flex flex-col gap-3 flex-1">
+          <h2 className="text-2xl text-ocean-950 font-bold">Progression</h2>
+          <StreakProgressWidget />
+        </div>
+        <div className="flex flex-col gap-3 flex-2">
+          <h2 className="text-2xl text-ocean-950 font-bold">
+            Quizs recommandés
+          </h2>
+          // Quizs à faire
         </div>
       </div>
     </div>
