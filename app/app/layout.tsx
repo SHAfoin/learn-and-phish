@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className="fixed -left-[300px] -top-[100px] -z-10 pointer-events-none"
       />
       <Sidebar></Sidebar>
-      <div className="pl-100 pt-8 flex gap-20 pr-8">
+      <div className="pl-100 py-8 flex gap-20 pr-8">
         {children}
         <TutorielButton />
       </div>
