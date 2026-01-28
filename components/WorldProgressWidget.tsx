@@ -13,7 +13,22 @@ export default function WorldProgressWidget() {
         </h2>
       </div>
       <div id="world-progress" className="flex gap-4 p-4 h-full">
-        <div className="flex-1 h-full flex items-center justify-center">
+        <div className="flex-1 h-full flex items-center justify-center relative">
+          <svg
+            className="absolute top-0 left-0 w-full h-full"
+            viewBox="0 0 200 300"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <path
+              d="M0 150Q50 75 100 150T200 150"
+              stroke="white"
+              strokeWidth="5"
+              strokeDasharray="10 10"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
           <WorldPathTile number={1} variant="todo"></WorldPathTile>
         </div>
         <div
