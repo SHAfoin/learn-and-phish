@@ -1,10 +1,16 @@
 import Image from "next/image";
 
-export default function StreakProgressWidget() {
-  const progression = 60; // Pourcentage de progression (0-100)
-  const objective = 8;
-  const doneToday = true;
+interface StreakProgressWidgetProps {
+  progression: number;
+  objective: number;
+  doneToday: boolean;
+}
 
+export default function StreakProgressWidget({
+  progression,
+  objective,
+  doneToday,
+}: StreakProgressWidgetProps) {
   return (
     <div className="w-full bg-neutral-100 flex rounded-2xl overflow-hidden">
       <div className="flex flex-col justify-center items-center gap-3 text-white font-bold bg-ocean-700 p-4">
@@ -13,7 +19,7 @@ export default function StreakProgressWidget() {
         <div className="relative w-8 h-full bg-white rounded-full overflow-hidden">
           <div
             className="absolute bottom-0 w-full bg-ocean-400"
-            style={{ height: `${progression}%` }}
+            style={{ height: `${(progression / 8) * 100}%` }}
           >
             <svg
               className="absolute top-0 left-0 w-full"

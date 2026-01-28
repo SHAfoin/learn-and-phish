@@ -1,5 +1,6 @@
 import ProfileHeader from "@/components/ProfileHeader";
 import QuestTile from "@/components/QuestTile";
+import QuizWidget from "@/components/QuizWidget";
 import StreakProgressWidget from "@/components/StreakProgressWidget";
 import WorldProgressWidget from "@/components/WorldProgressWidget";
 import React from "react";
@@ -51,13 +52,16 @@ export default function page() {
       <div className="flex w-full gap-6 h-fit">
         <div className="flex flex-col gap-3 flex-1">
           <h2 className="text-2xl text-ocean-950 font-bold">Progression</h2>
-          <StreakProgressWidget />
+          <StreakProgressWidget
+            progression={6}
+            objective={8}
+            doneToday={true}
+          />
         </div>
         <div className="flex flex-col gap-3 flex-2">
           <h2 className="text-2xl text-ocean-950 font-bold">
             Quizs recommandés
           </h2>
-          // Quizs à faire
         </div>
       </div>
     </div>
