@@ -38,10 +38,8 @@ export default function StreakProgressWidget({
         <p className="text-ocean-900">Prêt pour le prochain quiz ?</p>
         <img
           src={doneToday ? "/png/coin.png" : "/png/coin_disabled.png"}
-          width={150}
-          height={150}
           alt="Coin Icon"
-          className="mt-4"
+          className="mt-4 xl:w-44 xl:h-44 lg:w-32 lg:h-32 h-16 w-16"
         />
       </div>
     </div>
