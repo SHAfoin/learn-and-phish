@@ -1,6 +1,18 @@
-export default function QuizWidget() {
-  const iconUrl = "/svg/icons/admin.svg";
+import Link from "next/link";
 
+interface QuizWidgetProps {
+  title: string;
+  description: string;
+  iconUrl: string;
+  url: string;
+}
+
+export default function QuizWidget({
+  title,
+  description,
+  iconUrl,
+  url,
+}: QuizWidgetProps) {
   return (
     <div className="bg-ocean-600 flex w-full rounded-xl overflow-hidden">
       <div className="bg-ocean-400 p-4 flex items-center pr-10 justify-center relative">
@@ -23,8 +35,8 @@ export default function QuizWidget() {
         </div>
       </div>
       <div className="flex-1 text-white  p-4">
-        <h2 className="font-bold text-2xl">Titre</h2>
-        <p>Description</p>
+        <h2 className="font-bold text-2xl">{title}</h2>
+        <p>{description}</p>
       </div>
       <div className="bg-ocean-900 flex items-center justify-center p-4 pl-14 relative ">
         <div className="absolute top-0 left-0 h-full w-8">
@@ -36,7 +48,9 @@ export default function QuizWidget() {
             <path d="M0 100V0H30Q17 17 30 34T29 67t1 33Z" fill="#27AED3" />
           </svg>
         </div>
-        <img src="/svg/icons/arrow.svg" alt="Flèche" className="w-12 h-12" />
+        <Link href={url}>
+          <img src="/svg/icons/arrow.svg" alt="Flèche" className="w-12 h-12" />
+        </Link>
       </div>
     </div>
   );

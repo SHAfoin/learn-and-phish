@@ -70,8 +70,18 @@ export default function page() {
             </Link>
           </div>
 
-          <QuizWidget />
-          <QuizWidget />
+          <QuizWidget
+            title="Créer et gérez des mots de passe sécurisés"
+            description="Sécurité des mots de passe"
+            iconUrl="/svg/icons/admin.svg"
+            url="/quiz/1"
+          />
+          <QuizWidget
+            title="Détecter les tentatives de phishing"
+            description="Protection contre les attaques"
+            iconUrl="/svg/icons/admin.svg"
+            url="/quiz/2"
+          />
         </div>
       </div>
     </div>
