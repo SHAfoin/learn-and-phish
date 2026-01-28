@@ -1,4 +1,5 @@
 import React from "react";
+import WorldPathTile from "./WorldPathTile";
 
 export default function WorldProgressWidget() {
   return (
@@ -12,7 +13,9 @@ export default function WorldProgressWidget() {
         </h2>
       </div>
       <div id="world-progress" className="flex gap-4 p-4 h-full">
-        <div className="flex-1 h-full">Niveau 1</div>
+        <div className="flex-1 h-full flex items-center justify-center">
+          <WorldPathTile number={1} variant="todo"></WorldPathTile>
+        </div>
         <div
           id="world-progress-details"
           className="bg-ocean-50 rounded-xl h-full w-132 flex flex-col pb-2 px-6 gap-4 items-center justify-between pt-10 relative overflow-hidden"
@@ -21,7 +24,7 @@ export default function WorldProgressWidget() {
             Créer et gérer des mots de passe sécurisés
           </h1>
 
-          <div className="flex w-full justify-between z-20">
+          <div className="flex w-full justify-between z-20 text-white font-bold">
             <p>10 min</p>
             <p>Facile</p>
           </div>
