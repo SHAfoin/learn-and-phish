@@ -2,6 +2,7 @@ import ProfileHeader from "@/components/ProfileHeader";
 import QuestTile from "@/components/QuestTile";
 import QuizWidget from "@/components/QuizWidget";
 import StreakProgressWidget from "@/components/StreakProgressWidget";
+import { Button } from "@/components/ui/button";
 import WorldProgressWidget from "@/components/WorldProgressWidget";
 import React from "react";
 
@@ -59,9 +60,13 @@ export default function page() {
           />
         </div>
         <div className="flex flex-col gap-3 flex-2">
-          <h2 className="text-2xl text-ocean-950 font-bold">
-            Quizs recommandés
-          </h2>
+          <div className="flex justify-between">
+            <h2 className="text-2xl text-ocean-950 font-bold">
+              Quizs recommandés
+            </h2>
+            <Button variant={"link"}>Voir tous les quizs</Button>
+          </div>
+
           <QuizWidget />
           <QuizWidget />
         </div>
