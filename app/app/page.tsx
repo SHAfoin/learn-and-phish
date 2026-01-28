@@ -4,6 +4,7 @@ import QuizWidget from "@/components/QuizWidget";
 import StreakProgressWidget from "@/components/StreakProgressWidget";
 import { Button } from "@/components/ui/button";
 import WorldProgressWidget from "@/components/WorldProgressWidget";
+import Link from "next/link";
 import React from "react";
 
 export default function page() {
@@ -64,7 +65,9 @@ export default function page() {
             <h2 className="text-2xl text-ocean-950 font-bold">
               Quizs recommandés
             </h2>
-            <Button variant={"link"}>Voir tous les quizs</Button>
+            <Link href="/todo">
+              <Button variant={"link"}>Voir tous les quizs</Button>
+            </Link>
           </div>
 
           <QuizWidget />
