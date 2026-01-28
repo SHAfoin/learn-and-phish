@@ -62,6 +62,8 @@ export default function page() {
           <h2 className="text-2xl text-ocean-950 font-bold">
             Quizs recommandés
           </h2>
+          <QuizWidget />
+          <QuizWidget />
         </div>
       </div>
     </div>
