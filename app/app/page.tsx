@@ -19,7 +19,7 @@ export default function page() {
         streak={5}
         className="mb-2"
       />
-      <div className="flex w-full gap-6 h-fit">
+      <div className="flex w-full flex-col xl:flex-row gap-6 h-fit">
         <div className="flex flex-col gap-3 flex-2">
           <h2 className="text-2xl text-ocean-950 font-bold">Mon parcours</h2>
           <WorldProgressWidget />
@@ -51,7 +51,7 @@ export default function page() {
           </div>
         </div>
       </div>
-      <div className="flex w-full gap-6 h-fit">
+      <div className="flex w-full flex-col xl:flex-row gap-6 h-fit">
         <div className="flex flex-col gap-3 flex-1">
           <h2 className="text-2xl text-ocean-950 font-bold">Progression</h2>
           <StreakProgressWidget

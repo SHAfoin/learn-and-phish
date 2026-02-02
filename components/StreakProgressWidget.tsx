@@ -31,15 +31,18 @@ export default function StreakProgressWidget({
           </div>
         </div>
       </div>
-      <div className="flex flex-col p-4 items-center flex-1">
-        <h2 className="font-bold text-2xl text-ocean-900">
-          <span className="text-5xl text-sand-500">5</span> jours réalisés
-        </h2>
-        <p className="text-ocean-900">Prêt pour le prochain quiz ?</p>
+      <div className="flex xl:flex-col p-4 items-center flex-1 flex-row justify-center">
+        <div>
+          <h2 className="font-bold text-2xl text-ocean-900">
+            <span className="text-5xl text-sand-500">5</span> jours réalisés
+          </h2>
+          <p className="text-ocean-900">Prêt pour le prochain quiz ?</p>
+        </div>
+
         <img
           src={doneToday ? "/png/coin.png" : "/png/coin_disabled.png"}
           alt="Coin Icon"
-          className="mt-4 xl:w-44 xl:h-44 lg:w-32 lg:h-32 h-16 w-16"
+          className="mt-4 xl:w-44 xl:h-44 lg:w-32 lg:h-32 h-20 w-20"
         />
       </div>
     </div>
