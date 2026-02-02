@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import styles from "./home.module.css";
 import Link from "next/link";
 
 export default function page() {
