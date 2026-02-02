@@ -15,7 +15,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import GroupesTable from "@/components/GroupesTable";
+import GroupesTable from "@/app/app/phishing/GroupesTable";
 
 // Données placeholder pour les campagnes
 const campagnesData = [

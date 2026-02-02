@@ -1,9 +1,9 @@
-import ProfileHeader from "@/components/ProfileHeader";
-import QuestTile from "@/components/QuestTile";
-import QuizWidget from "@/components/QuizWidget";
-import StreakProgressWidget from "@/components/StreakProgressWidget";
+import ProfileHeader from "@/app/app/ProfileHeader";
+import QuestTile from "@/app/app/QuestTile";
+import QuizWidget from "@/app/app/QuizWidget";
+import StreakProgressWidget from "@/app/app/StreakProgressWidget";
 import { Button } from "@/components/ui/button";
-import WorldProgressWidget from "@/components/WorldProgressWidget";
+import WorldProgressWidget from "@/app/app/WorldProgressWidget";
 import Link from "next/link";
 import React from "react";
 
