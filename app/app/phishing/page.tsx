@@ -248,7 +248,7 @@ export default function page() {
             </TableBody>
           </Table>
           <div className="pt-3 flex justify-end gap-3">
-            <Link href="/todo">
+            <Link href="/app/phishing/campagnes">
               <Button variant="outline" className="border-ocean-850">
                 Voir toutes les campagnes
               </Button>
@@ -318,7 +318,7 @@ export default function page() {
               </TableBody>
             </Table>
             <div className="pt-3 flex justify-end gap-3">
-              <Link href="/todo">
+              <Link href="/app/phishing/mails">
                 <Button variant="outline" className="border-ocean-850">
                   Voir tous les modèles
                 </Button>
@@ -386,7 +386,7 @@ export default function page() {
               </TableBody>
             </Table>
             <div className="pt-3 flex justify-end gap-3">
-              <Link href="/todo">
+              <Link href="/app/phishing/template-internet">
                 <Button variant="outline" className="border-ocean-850">
                   Voir toutes les pages
                 </Button>
