@@ -130,7 +130,7 @@ export default function page() {
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
       {/* Page Header */}
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-4 items-center">
         <Link href="/app/phishing">
           <img
             src="/svg/icons/arrow-blue.svg"
