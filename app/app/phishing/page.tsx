@@ -26,9 +26,13 @@ import {
   groupes,
 } from "@/lib/placeholder";
 import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
+import { ModeleMailCreateDialog } from "@/app/app/phishing/mails/ModeleMailCreateDialog";
+import { ModelePageCreateDialog } from "@/app/app/phishing/template-internet/ModelePageCreateDialog";
 
 export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
+  const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
       {/* Page Header */}
@@ -172,9 +176,9 @@ export default function page() {
                   Voir tous les modèles
                 </Button>
               </Link>
-              <Link href="/todo">
-                <Button>Créer un modèle</Button>
-              </Link>
+              <Button onClick={() => setIsMailDialogOpen(true)}>
+                Créer un modèle
+              </Button>
             </div>
           </div>
         </div>
@@ -240,9 +244,9 @@ export default function page() {
                   Voir toutes les pages
                 </Button>
               </Link>
-              <Link href="/todo">
-                <Button>Créer une page</Button>
-              </Link>
+              <Button onClick={() => setIsPageDialogOpen(true)}>
+                Créer une page
+              </Button>
             </div>
           </div>
         </div>
@@ -258,6 +262,14 @@ export default function page() {
       <CampaignCreateDialog
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
+      />
+      <ModeleMailCreateDialog
+        open={isMailDialogOpen}
+        onOpenChange={setIsMailDialogOpen}
+      />
+      <ModelePageCreateDialog
+        open={isPageDialogOpen}
+        onOpenChange={setIsPageDialogOpen}
       />
     </div>
   );
