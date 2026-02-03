@@ -25,21 +25,19 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination";
-
-interface Campagne {
-  id: number;
-  nom: string;
-  dateLancement: string;
-  statut: string;
-  templateMail: string;
-  templatePage: string;
-}
+import { Campagne } from "@/lib/placeholder";
 
 interface CampagnesTableProps {
   campagnes: Campagne[];
+  onEdit?: (campagne: Campagne) => void;
+  onDelete?: (campagne: Campagne) => void;
 }
 
-export default function CampagnesTable({ campagnes }: CampagnesTableProps) {
+export default function CampagnesTable({
+  campagnes,
+  onEdit,
+  onDelete,
+}: CampagnesTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -130,8 +128,13 @@ export default function CampagnesTable({ campagnes }: CampagnesTableProps) {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Modifier</DropdownMenuItem>
-                        <DropdownMenuItem variant="destructive">
+                        <DropdownMenuItem onClick={() => onEdit?.(campagne)}>
+                          Modifier
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          variant="destructive"
+                          onClick={() => onDelete?.(campagne)}
+                        >
                           Supprimer
                         </DropdownMenuItem>
                       </DropdownMenuContent>

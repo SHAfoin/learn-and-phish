@@ -29,9 +29,15 @@ import { ModelePage } from "@/lib/placeholder/types";
 
 interface ModelesPagesTableProps {
   modeles: ModelePage[];
+  onEdit?: (modele: ModelePage) => void;
+  onDelete?: (modele: ModelePage) => void;
 }
 
-export default function ModelesPagesTable({ modeles }: ModelesPagesTableProps) {
+export default function ModelesPagesTable({
+  modeles,
+  onEdit,
+  onDelete,
+}: ModelesPagesTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -81,8 +87,13 @@ export default function ModelesPagesTable({ modeles }: ModelesPagesTableProps) {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Modifier</DropdownMenuItem>
-                        <DropdownMenuItem variant="destructive">
+                        <DropdownMenuItem onClick={() => onEdit?.(modele)}>
+                          Modifier
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          variant="destructive"
+                          onClick={() => onDelete?.(modele)}
+                        >
                           Supprimer
                         </DropdownMenuItem>
                       </DropdownMenuContent>

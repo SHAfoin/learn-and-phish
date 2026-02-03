@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,29 +10,50 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ModelePage } from "@/lib/placeholder";
 
 interface ModelePageCreateDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialData?: ModelePage & { contenuHtml?: string };
 }
 
 export function ModelePageCreateDialog({
   open,
   onOpenChange,
+  initialData,
 }: ModelePageCreateDialogProps) {
   const [nom, setNom] = useState("");
   const [urlRedirection, setUrlRedirection] = useState("");
   const [contenuHtml, setContenuHtml] = useState("");
 
-  const resetForm = () => {
-    setNom("");
-    setUrlRedirection("");
-    setContenuHtml("");
-  };
+  const isEdit = Boolean(initialData);
+
+  useEffect(() => {
+    if (!open || !initialData) return;
+
+    setNom(initialData.nom ?? "");
+    setUrlRedirection(initialData.url ?? "");
+    setContenuHtml(initialData.contenuHtml ?? "");
+  }, [open, initialData]);
 
   const handleCancel = () => {
-    resetForm();
     onOpenChange(false);
+  };
+
+  const handleCreate = () => {
+    // Fonction vide pour future intégration API (création)
+    console.log({ nom, urlRedirection, contenuHtml });
+  };
+
+  const handleUpdate = () => {
+    // Fonction vide pour future intégration API (modification)
+    console.log({
+      id: initialData?.id,
+      nom,
+      urlRedirection,
+      contenuHtml,
+    });
   };
 
   const handleSave = () => {
@@ -41,10 +62,12 @@ export function ModelePageCreateDialog({
       return;
     }
 
-    // Fonction vide pour future intégration API
-    console.log({ nom, urlRedirection, contenuHtml });
+    if (isEdit) {
+      handleUpdate();
+    } else {
+      handleCreate();
+    }
 
-    resetForm();
     onOpenChange(false);
   };
 
@@ -53,7 +76,9 @@ export function ModelePageCreateDialog({
       <DialogContent className="max-w-[920px] bg-ocean-50 rounded-[10px] p-[30px]">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-bold text-black">
-            Créer un modèle de page web
+            {isEdit
+              ? "Modifier un modèle de page web"
+              : "Créer un modèle de page web"}
           </DialogTitle>
         </DialogHeader>
 
@@ -118,7 +143,7 @@ export function ModelePageCreateDialog({
               onClick={handleSave}
               className="px-4 py-2 bg-ocean-800 text-white rounded-[5px] hover:bg-ocean-900"
             >
-              Sauvegarder
+              {isEdit ? "Mettre à jour" : "Sauvegarder"}
             </Button>
           </div>
         </div>

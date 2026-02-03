@@ -29,9 +29,15 @@ import { ModeleMail } from "@/lib/placeholder";
 
 interface ModeleMailsTableProps {
   modeles: ModeleMail[];
+  onEdit?: (modele: ModeleMail) => void;
+  onDelete?: (modele: ModeleMail) => void;
 }
 
-export default function ModeleMailsTable({ modeles }: ModeleMailsTableProps) {
+export default function ModeleMailsTable({
+  modeles,
+  onEdit,
+  onDelete,
+}: ModeleMailsTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -87,8 +93,13 @@ export default function ModeleMailsTable({ modeles }: ModeleMailsTableProps) {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Modifier</DropdownMenuItem>
-                        <DropdownMenuItem variant="destructive">
+                        <DropdownMenuItem onClick={() => onEdit?.(modele)}>
+                          Modifier
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          variant="destructive"
+                          onClick={() => onDelete?.(modele)}
+                        >
                           Supprimer
                         </DropdownMenuItem>
                       </DropdownMenuContent>

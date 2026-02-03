@@ -24,9 +24,17 @@ export interface ModelePage {
   url?: string;
 }
 
+export interface User {
+  id: number;
+  prenom: string;
+  nom: string;
+  email: string;
+  role: string;
+}
+
 export interface Groupe {
   id: number;
   nom: string;
   date: string;
-  nombreUtilisateurs: number;
+  utilisateurs: User[];
 }

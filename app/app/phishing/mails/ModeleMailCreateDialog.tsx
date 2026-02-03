@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,31 +10,53 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ModeleMail } from "@/lib/placeholder";
 
 interface ModeleMailCreateDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialData?: ModeleMail & { contenuHtml?: string };
 }
 
 export function ModeleMailCreateDialog({
   open,
   onOpenChange,
+  initialData,
 }: ModeleMailCreateDialogProps) {
   const [nom, setNom] = useState("");
   const [objet, setObjet] = useState("");
   const [expediteur, setExpediteur] = useState("");
   const [contenuHtml, setContenuHtml] = useState("");
 
-  const resetForm = () => {
-    setNom("");
-    setObjet("");
-    setExpediteur("");
-    setContenuHtml("");
-  };
+  const isEdit = Boolean(initialData);
+
+  useEffect(() => {
+    if (!open || !initialData) return;
+
+    setNom(initialData.nom ?? "");
+    setObjet(initialData.objet ?? "");
+    setExpediteur(initialData.expediteur ?? "");
+    setContenuHtml(initialData.contenuHtml ?? "");
+  }, [open, initialData]);
 
   const handleCancel = () => {
-    resetForm();
     onOpenChange(false);
+  };
+
+  const handleCreate = () => {
+    // Fonction vide pour future intégration API (création)
+    console.log({ nom, objet, expediteur, contenuHtml });
+  };
+
+  const handleUpdate = () => {
+    // Fonction vide pour future intégration API (modification)
+    console.log({
+      id: initialData?.id,
+      nom,
+      objet,
+      expediteur,
+      contenuHtml,
+    });
   };
 
   const handleSave = () => {
@@ -43,10 +65,12 @@ export function ModeleMailCreateDialog({
       return;
     }
 
-    // Fonction vide pour future intégration API
-    console.log({ nom, objet, expediteur, contenuHtml });
+    if (isEdit) {
+      handleUpdate();
+    } else {
+      handleCreate();
+    }
 
-    resetForm();
     onOpenChange(false);
   };
 
@@ -55,7 +79,7 @@ export function ModeleMailCreateDialog({
       <DialogContent className="max-w-[920px] bg-ocean-50 rounded-[10px] p-[30px]">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-bold text-black">
-            Créer un modèle de mail
+            {isEdit ? "Modifier un modèle de mail" : "Créer un modèle de mail"}
           </DialogTitle>
         </DialogHeader>
 
@@ -137,7 +161,7 @@ export function ModeleMailCreateDialog({
               onClick={handleSave}
               className="px-4 py-2 bg-ocean-800 text-white rounded-[5px] hover:bg-ocean-900"
             >
-              Sauvegarder
+              {isEdit ? "Mettre à jour" : "Sauvegarder"}
             </Button>
           </div>
         </div>

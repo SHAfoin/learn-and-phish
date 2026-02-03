@@ -19,11 +19,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import GroupesTable from "@/app/app/phishing/GroupesTable";
+import { GroupCreateDialog } from "@/app/app/phishing/GroupCreateDialog";
 import {
+  Campagne,
+  Groupe,
+  ModeleMail,
+  ModelePage,
   campagnes,
+  groupes,
   modelesMails,
   modelesPages,
-  groupes,
 } from "@/lib/placeholder";
 import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
 import { ModeleMailCreateDialog } from "@/app/app/phishing/mails/ModeleMailCreateDialog";
@@ -33,6 +38,29 @@ export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
   const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
+  const [isGroupDialogOpen, setIsGroupDialogOpen] = useState(false);
+  const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(
+    null,
+  );
+  const [selectedMail, setSelectedMail] = useState<ModeleMail | null>(null);
+  const [selectedPage, setSelectedPage] = useState<ModelePage | null>(null);
+  const [selectedGroupe, setSelectedGroupe] = useState<Groupe | null>(null);
+
+  const handleDeleteCampagne = (campagne: Campagne) => {
+    if (!window.confirm("Vous êtes sûr ?")) return;
+    console.log(campagne);
+  };
+
+  const handleDeleteMail = (modele: ModeleMail) => {
+    if (!window.confirm("Vous êtes sûr ?")) return;
+    console.log(modele);
+  };
+
+  const handleDeletePage = (modele: ModelePage) => {
+    if (!window.confirm("Vous êtes sûr ?")) return;
+    console.log(modele);
+  };
+
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
       {/* Page Header */}
@@ -88,8 +116,18 @@ export default function page() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>Modifier</DropdownMenuItem>
-                          <DropdownMenuItem variant="destructive">
+                          <DropdownMenuItem
+                            onClick={() => {
+                              setSelectedCampagne(campagne);
+                              setIsDialogOpen(true);
+                            }}
+                          >
+                            Modifier
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            variant="destructive"
+                            onClick={() => handleDeleteCampagne(campagne)}
+                          >
                             Supprimer
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -106,7 +144,12 @@ export default function page() {
                 Voir toutes les campagnes
               </Button>
             </Link>
-            <Button onClick={() => setIsDialogOpen(true)}>
+            <Button
+              onClick={() => {
+                setSelectedCampagne(null);
+                setIsDialogOpen(true);
+              }}
+            >
               Créer une campagne
             </Button>
           </div>
@@ -158,8 +201,18 @@ export default function page() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem>Modifier</DropdownMenuItem>
-                            <DropdownMenuItem variant="destructive">
+                            <DropdownMenuItem
+                              onClick={() => {
+                                setSelectedMail(modele);
+                                setIsMailDialogOpen(true);
+                              }}
+                            >
+                              Modifier
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              variant="destructive"
+                              onClick={() => handleDeleteMail(modele)}
+                            >
                               Supprimer
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -176,7 +229,12 @@ export default function page() {
                   Voir tous les modèles
                 </Button>
               </Link>
-              <Button onClick={() => setIsMailDialogOpen(true)}>
+              <Button
+                onClick={() => {
+                  setSelectedMail(null);
+                  setIsMailDialogOpen(true);
+                }}
+              >
                 Créer un modèle
               </Button>
             </div>
@@ -226,8 +284,18 @@ export default function page() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem>Modifier</DropdownMenuItem>
-                            <DropdownMenuItem variant="destructive">
+                            <DropdownMenuItem
+                              onClick={() => {
+                                setSelectedPage(modele);
+                                setIsPageDialogOpen(true);
+                              }}
+                            >
+                              Modifier
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              variant="destructive"
+                              onClick={() => handleDeletePage(modele)}
+                            >
                               Supprimer
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -244,7 +312,12 @@ export default function page() {
                   Voir toutes les pages
                 </Button>
               </Link>
-              <Button onClick={() => setIsPageDialogOpen(true)}>
+              <Button
+                onClick={() => {
+                  setSelectedPage(null);
+                  setIsPageDialogOpen(true);
+                }}
+              >
                 Créer une page
               </Button>
             </div>
@@ -255,21 +328,39 @@ export default function page() {
       {/* Groupes Section */}
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl text-ocean-950 font-bold">Groupes</h2>
-        <GroupesTable groupes={groupes} />
+        <GroupesTable
+          groupes={groupes}
+          onCreate={() => {
+            setSelectedGroupe(null);
+            setIsGroupDialogOpen(true);
+          }}
+          onEdit={(groupe) => {
+            setSelectedGroupe(groupe);
+            setIsGroupDialogOpen(true);
+          }}
+        />
       </div>
 
       {/* Campaign Create Dialog */}
       <CampaignCreateDialog
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
+        initialData={selectedCampagne ?? undefined}
       />
       <ModeleMailCreateDialog
         open={isMailDialogOpen}
         onOpenChange={setIsMailDialogOpen}
+        initialData={selectedMail ?? undefined}
       />
       <ModelePageCreateDialog
         open={isPageDialogOpen}
         onOpenChange={setIsPageDialogOpen}
+        initialData={selectedPage ?? undefined}
+      />
+      <GroupCreateDialog
+        open={isGroupDialogOpen}
+        onOpenChange={setIsGroupDialogOpen}
+        initialData={selectedGroupe ?? undefined}
       />
     </div>
   );

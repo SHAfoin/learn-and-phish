@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { format } from "date-fns";
+import { useEffect, useState } from "react";
+import { format, isValid, parse } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import {
@@ -27,18 +27,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
-import { groupes } from "@/lib/placeholder/groupes";
-import { modelesMails } from "@/lib/placeholder/modeles-mails";
-import { modelesPages } from "@/lib/placeholder/modeles-pages";
+import {
+  Campagne,
+  groupes,
+  modelesMails,
+  modelesPages,
+} from "@/lib/placeholder";
 
 interface CampaignCreateDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialData?: Campagne;
 }
 
 export function CampaignCreateDialog({
   open,
   onOpenChange,
+  initialData,
 }: CampaignCreateDialogProps) {
   const [nom, setNom] = useState("");
   const [groupeId, setGroupeId] = useState("");
@@ -49,9 +54,66 @@ export function CampaignCreateDialog({
   const [dateFin, setDateFin] = useState<Date>();
   const [envoyerMaintenant, setEnvoyerMaintenant] = useState(false);
 
+  const isEdit = Boolean(initialData);
+
   const formatDateToDisplay = (date: Date | undefined) => {
     if (!date) return "";
     return format(date, "dd/MM/yy", { locale: fr });
+  };
+
+  const parseDateFromString = (value?: string) => {
+    if (!value) return undefined;
+    const parsed = parse(value, "dd/MM/yy", new Date(), { locale: fr });
+    return isValid(parsed) ? parsed : undefined;
+  };
+
+  useEffect(() => {
+    if (!open || !initialData) return;
+
+    const mailMatch = modelesMails.find(
+      (mail) => mail.nom === initialData.templateMail,
+    );
+    const pageMatch = modelesPages.find(
+      (page) => page.nom === initialData.templatePage,
+    );
+
+    setNom(initialData.nom ?? "");
+    setGroupeId(initialData.groupeId ? initialData.groupeId.toString() : "");
+    setUrl(initialData.url ?? "");
+    setTemplateMailId(mailMatch ? mailMatch.id.toString() : "");
+    setTemplatePageId(pageMatch ? pageMatch.id.toString() : "");
+    setDateDebut(parseDateFromString(initialData.dateDebut));
+    setDateFin(parseDateFromString(initialData.dateFin));
+    setEnvoyerMaintenant(false);
+  }, [open, initialData]);
+
+  const handleCreate = () => {
+    // Fonction vide pour future intégration API (création)
+    console.log({
+      nom,
+      groupeId: Number(groupeId),
+      url,
+      templateMailId: Number(templateMailId),
+      templatePageId: Number(templatePageId),
+      dateDebut: formatDateToDisplay(dateDebut),
+      dateFin: dateFin ? formatDateToDisplay(dateFin) : undefined,
+      envoyerMaintenant,
+    });
+  };
+
+  const handleUpdate = () => {
+    // Fonction vide pour future intégration API (modification)
+    console.log({
+      id: initialData?.id,
+      nom,
+      groupeId: Number(groupeId),
+      url,
+      templateMailId: Number(templateMailId),
+      templatePageId: Number(templatePageId),
+      dateDebut: formatDateToDisplay(dateDebut),
+      dateFin: dateFin ? formatDateToDisplay(dateFin) : undefined,
+      envoyerMaintenant,
+    });
   };
 
   const handleSave = () => {
@@ -74,36 +136,16 @@ export function CampaignCreateDialog({
       return;
     }
 
-    // Fonction vide pour future intégration API
-    console.log({
-      nom,
-      groupeId: Number(groupeId),
-      url,
-      templateMailId: Number(templateMailId),
-      templatePageId: Number(templatePageId),
-      dateDebut: formatDateToDisplay(dateDebut),
-      dateFin: dateFin ? formatDateToDisplay(dateFin) : undefined,
-      envoyerMaintenant,
-    });
+    if (isEdit) {
+      handleUpdate();
+    } else {
+      handleCreate();
+    }
 
-    // Réinitialiser le formulaire et fermer le dialog
-    resetForm();
     onOpenChange(false);
   };
 
-  const resetForm = () => {
-    setNom("");
-    setGroupeId("");
-    setUrl("");
-    setTemplateMailId("");
-    setTemplatePageId("");
-    setDateDebut(undefined);
-    setDateFin(undefined);
-    setEnvoyerMaintenant(false);
-  };
-
   const handleCancel = () => {
-    resetForm();
     onOpenChange(false);
   };
 
@@ -112,7 +154,7 @@ export function CampaignCreateDialog({
       <DialogContent className="max-w-fit! bg-ocean-50 rounded-[10px] p-[30px]">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-bold text-black">
-            Créer une nouvelle campagne
+            {isEdit ? "Modifier une campagne" : "Créer une nouvelle campagne"}
           </DialogTitle>
         </DialogHeader>
 
@@ -304,7 +346,7 @@ export function CampaignCreateDialog({
               onClick={handleSave}
               className="px-4 py-2 bg-ocean-800 text-white rounded-[5px] hover:bg-ocean-900"
             >
-              Lancer
+              {isEdit ? "Mettre à jour" : "Lancer"}
             </Button>
           </div>
         </div>

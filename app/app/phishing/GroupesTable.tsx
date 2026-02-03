@@ -10,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
 import { ArrowUpDown, MoreHorizontalIcon } from "lucide-react";
 import {
   DropdownMenu,
@@ -26,19 +25,19 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination";
-
-interface Groupe {
-  id: number;
-  nom: string;
-  date: string;
-  nombreUtilisateurs: number;
-}
+import { Groupe } from "@/lib/placeholder";
 
 interface GroupesTableProps {
   groupes: Groupe[];
+  onCreate: () => void;
+  onEdit: (groupe: Groupe) => void;
 }
 
-export default function GroupesTable({ groupes }: GroupesTableProps) {
+export default function GroupesTable({
+  groupes,
+  onCreate,
+  onEdit,
+}: GroupesTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -92,7 +91,7 @@ export default function GroupesTable({ groupes }: GroupesTableProps) {
                   </TableCell>
                   <TableCell className="text-right w-[25%]">
                     <div className="truncate max-w-full">
-                      {groupe.nombreUtilisateurs}
+                      {groupe.utilisateurs.length}
                     </div>
                   </TableCell>
                   <TableCell className="text-right w-[20%]">
@@ -104,7 +103,9 @@ export default function GroupesTable({ groupes }: GroupesTableProps) {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Modifier</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => onEdit(groupe)}>
+                          Modifier
+                        </DropdownMenuItem>
                         <DropdownMenuItem variant="destructive">
                           Supprimer
                         </DropdownMenuItem>
@@ -165,9 +166,9 @@ export default function GroupesTable({ groupes }: GroupesTableProps) {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-        <Link className="absolute right-0" href="/todo">
-          <Button>Ajouter un groupe</Button>
-        </Link>
+        <Button className="absolute right-0" onClick={onCreate}>
+          Ajouter un groupe
+        </Button>
       </div>
     </div>
   );
