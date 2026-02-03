@@ -25,13 +25,7 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination";
-
-interface ModeleMail {
-  id: number;
-  nom: string;
-  expediteur: string;
-  objet: string;
-}
+import { ModeleMail } from "@/lib/placeholder";
 
 interface ModeleMailsTableProps {
   modeles: ModeleMail[];

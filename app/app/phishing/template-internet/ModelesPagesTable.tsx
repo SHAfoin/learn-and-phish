@@ -25,15 +25,10 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination";
-
-interface ModelePageInternet {
-  id: number;
-  nom: string;
-  url: string;
-}
+import { ModelePage } from "@/lib/placeholder/types";
 
 interface ModelesPagesTableProps {
-  modeles: ModelePageInternet[];
+  modeles: ModelePage[];
 }
 
 export default function ModelesPagesTable({ modeles }: ModelesPagesTableProps) {
