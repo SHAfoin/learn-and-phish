@@ -109,7 +109,7 @@ export function CampaignCreateDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="!max-w-fit bg-ocean-50 rounded-[10px] p-[30px]">
+      <DialogContent className="max-w-fit! bg-ocean-50 rounded-[10px] p-[30px]">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-bold text-black">
             Créer une nouvelle campagne
@@ -121,7 +121,7 @@ export function CampaignCreateDialog({
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
               <Label htmlFor="nom" className="text-[14px] text-ocean-950">
-                Choisir un nom
+                Choisir un nom <span className="text-red-500">*</span>
               </Label>
               <Input
                 id="nom"
@@ -134,7 +134,7 @@ export function CampaignCreateDialog({
 
             <div className="flex flex-col gap-3 w-[417px]">
               <Label htmlFor="groupe" className="text-[14px] text-ocean-950">
-                Choisir un groupe
+                Choisir un groupe <span className="text-red-500">*</span>
               </Label>
               <Select value={groupeId} onValueChange={setGroupeId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
@@ -154,7 +154,8 @@ export function CampaignCreateDialog({
           {/* URL */}
           <div className="flex flex-col gap-3">
             <Label htmlFor="url" className="text-[14px] text-ocean-950">
-              Saisir l&apos;URL de la landing page
+              Saisir l&apos;URL de la landing page{" "}
+              <span className="text-red-500">*</span>
             </Label>
             <Input
               id="url"
@@ -169,7 +170,7 @@ export function CampaignCreateDialog({
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
               <Label htmlFor="mail" className="text-[14px] text-ocean-950">
-                Choisir un mail
+                Choisir un mail <span className="text-red-500">*</span>
               </Label>
               <Select value={templateMailId} onValueChange={setTemplateMailId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
@@ -187,7 +188,7 @@ export function CampaignCreateDialog({
 
             <div className="flex flex-col gap-3 w-[417px]">
               <Label htmlFor="template" className="text-[14px] text-ocean-950">
-                Choisir un template
+                Choisir un template <span className="text-red-500">*</span>
               </Label>
               <Select value={templatePageId} onValueChange={setTemplatePageId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
@@ -208,7 +209,8 @@ export function CampaignCreateDialog({
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
               <Label className="text-[14px] text-ocean-950">
-                Choisir la date de lancement
+                Choisir la date de lancement{" "}
+                <span className="text-red-500">*</span>
               </Label>
               <Popover>
                 <PopoverTrigger asChild>
@@ -283,14 +285,14 @@ export function CampaignCreateDialog({
             />
             <Label
               htmlFor="envoyer-maintenant"
-              className="text-[12px] text-black leading-[14px] cursor-pointer"
+              className="text-[12px] text-black leading-3.5 cursor-pointer"
             >
               Envoyer maintenant
             </Label>
           </div>
 
           {/* Boutons */}
-          <div className="flex gap-[10px] justify-end mt-4">
+          <div className="flex gap-2.5 justify-end mt-4">
             <Button
               variant="outline"
               onClick={handleCancel}
