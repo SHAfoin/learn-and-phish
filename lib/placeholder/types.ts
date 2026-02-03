@@ -6,6 +6,9 @@ export interface Campagne {
   templateMail: string;
   templatePage: string;
   url?: string;
+  groupeId: number;
+  dateDebut: string;
+  dateFin?: string;
 }
 
 export interface ModeleMail {

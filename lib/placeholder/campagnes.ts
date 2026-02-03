@@ -9,6 +9,9 @@ export const campagnes: Campagne[] = [
     templateMail: "Alerte sécurité bancaire",
     templatePage: "Page de connexion bancaire",
     url: "https://phishing-test.example.com/campagne-q1-securite-mdp",
+    groupeId: 1,
+    dateDebut: "15/01/26",
+    dateFin: "20/01/26",
   },
   {
     id: 2,
@@ -18,6 +21,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Notification Microsoft",
     templatePage: "Portail Microsoft 365",
     url: "https://phishing-test.example.com/rh-test",
+    groupeId: 4,
+    dateDebut: "22/01/26",
   },
   {
     id: 3,
@@ -27,6 +32,9 @@ export const campagnes: Campagne[] = [
     templateMail: "PayPal - Confirmation de paiement",
     templatePage: "Page de vérification PayPal",
     url: "https://phishing-test.example.com/formation-nouveaux",
+    groupeId: 7,
+    dateDebut: "05/02/26",
+    dateFin: "10/02/26",
   },
   {
     id: 4,
@@ -36,6 +44,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Google - Nouvelle connexion",
     templatePage: "Interface de réinitialisation Google",
     url: "https://phishing-test.example.com/simulation-finance",
+    groupeId: 2,
+    dateDebut: "28/01/26",
   },
   {
     id: 5,
@@ -45,6 +55,9 @@ export const campagnes: Campagne[] = [
     templateMail: "Amazon - Problème de livraison",
     templatePage: "Connexion Amazon",
     url: "https://phishing-test.example.com/amazon-verify",
+    groupeId: 6,
+    dateDebut: "10/01/26",
+    dateFin: "15/01/26",
   },
   {
     id: 6,
@@ -54,6 +67,8 @@ export const campagnes: Campagne[] = [
     templateMail: "LinkedIn - Message recruteur",
     templatePage: "Page de connexion LinkedIn",
     url: "https://phishing-test.example.com/linkedin-login",
+    groupeId: 8,
+    dateDebut: "18/02/26",
   },
   {
     id: 7,
@@ -63,6 +78,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Orange - Facture impayée",
     templatePage: "Portail Orange",
     url: "https://phishing-test.example.com/orange-client",
+    groupeId: 11,
+    dateDebut: "03/02/26",
   },
   {
     id: 8,
@@ -72,6 +89,9 @@ export const campagnes: Campagne[] = [
     templateMail: "Free Mobile - Mise à jour forfait",
     templatePage: "Interface Free Mobile",
     url: "https://phishing-test.example.com/free-mobile-auth",
+    groupeId: 3,
+    dateDebut: "12/01/26",
+    dateFin: "18/01/26",
   },
   {
     id: 9,
@@ -81,6 +101,8 @@ export const campagnes: Campagne[] = [
     templateMail: "La Poste - Colis en attente",
     templatePage: "Page de connexion La Poste",
     url: "https://phishing-test.example.com/laposte-services",
+    groupeId: 10,
+    dateDebut: "25/02/26",
   },
   {
     id: 10,
@@ -90,6 +112,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Impots.gouv - Remboursement",
     templatePage: "Portail Impots.gouv.fr",
     url: "https://phishing-test.example.com/impots-gouv",
+    groupeId: 7,
+    dateDebut: "08/02/26",
   },
   {
     id: 11,
@@ -99,6 +123,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Ameli - Mise à jour carte vitale",
     templatePage: "Interface Ameli",
     url: "https://phishing-test.example.com/ameli-compte",
+    groupeId: 8,
+    dateDebut: "01/02/26",
   },
   {
     id: 12,
@@ -108,6 +134,9 @@ export const campagnes: Campagne[] = [
     templateMail: "Netflix - Problème de paiement",
     templatePage: "Page de vérification Netflix",
     url: "https://phishing-test.example.com/netflix-payment",
+    groupeId: 2,
+    dateDebut: "20/01/26",
+    dateFin: "25/01/26",
   },
   {
     id: 13,
@@ -117,6 +146,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Apple - Achat suspect",
     templatePage: "Connexion Apple ID",
     url: "https://phishing-test.example.com/apple-id-security",
+    groupeId: 4,
+    dateDebut: "14/02/26",
   },
   {
     id: 14,
@@ -126,6 +157,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Crédit Agricole - Sécurité renforcée",
     templatePage: "Portail Crédit Agricole",
     url: "https://phishing-test.example.com/credit-agricole",
+    groupeId: 7,
+    dateDebut: "29/01/26",
   },
   {
     id: 15,
@@ -135,5 +168,8 @@ export const campagnes: Campagne[] = [
     templateMail: "Société Générale - Opération bloquée",
     templatePage: "Interface Société Générale",
     url: "https://phishing-test.example.com/societe-generale",
+    groupeId: 7,
+    dateDebut: "06/01/26",
+    dateFin: "12/01/26",
   },
 ];

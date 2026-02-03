@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -22,8 +25,10 @@ import {
   modelesPages,
   groupes,
 } from "@/lib/placeholder";
+import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
 
 export default function page() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
       {/* Page Header */}
@@ -97,9 +102,9 @@ export default function page() {
                 Voir toutes les campagnes
               </Button>
             </Link>
-            <Link href="/todo">
-              <Button>Créer une campagne</Button>
-            </Link>
+            <Button onClick={() => setIsDialogOpen(true)}>
+              Créer une campagne
+            </Button>
           </div>
         </div>
       </div>
@@ -248,6 +253,12 @@ export default function page() {
         <h2 className="text-2xl text-ocean-950 font-bold">Groupes</h2>
         <GroupesTable groupes={groupes} />
       </div>
+
+      {/* Campaign Create Dialog */}
+      <CampaignCreateDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      />
     </div>
   );
 }
