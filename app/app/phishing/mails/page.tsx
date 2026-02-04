@@ -5,9 +5,19 @@ import ModeleMailsTable from "@/app/app/phishing/mails/ModeleMailsTable";
 import Link from "next/link";
 import { ModeleMail, modelesMails } from "@/lib/placeholder";
 import { ModeleMailCreateDialog } from "@/app/app/phishing/mails/ModeleMailCreateDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedMail, setSelectedMail] = useState<ModeleMail | null>(null);
 
   const handleEdit = (modele: ModeleMail) => {
@@ -16,8 +26,14 @@ export default function page() {
   };
 
   const handleDelete = (modele: ModeleMail) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(modele);
+    setSelectedMail(modele);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (!selectedMail) return;
+    console.log(selectedMail);
+    setIsDeleteDialogOpen(false);
   };
 
   return (
@@ -47,6 +63,28 @@ export default function page() {
         onOpenChange={setIsDialogOpen}
         initialData={selectedMail ?? undefined}
       />
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer le modèle</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer le modèle "{selectedMail?.nom}"
+              ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -5,9 +5,19 @@ import ModelesPagesTable from "@/app/app/phishing/template-internet/ModelesPages
 import Link from "next/link";
 import { ModelePage, modelesPages } from "@/lib/placeholder";
 import { ModelePageCreateDialog } from "@/app/app/phishing/template-internet/ModelePageCreateDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedPage, setSelectedPage] = useState<ModelePage | null>(null);
 
   const handleEdit = (modele: ModelePage) => {
@@ -16,8 +26,14 @@ export default function page() {
   };
 
   const handleDelete = (modele: ModelePage) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(modele);
+    setSelectedPage(modele);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (!selectedPage) return;
+    console.log(selectedPage);
+    setIsDeleteDialogOpen(false);
   };
 
   return (
@@ -47,6 +63,28 @@ export default function page() {
         onOpenChange={setIsDialogOpen}
         initialData={selectedPage ?? undefined}
       />
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer la page</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer la page "{selectedPage?.nom}" ?
+              Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

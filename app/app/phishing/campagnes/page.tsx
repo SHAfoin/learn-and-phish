@@ -5,9 +5,19 @@ import CampagnesTable from "@/app/app/phishing/campagnes/CampagnesTable";
 import Link from "next/link";
 import { Campagne, campagnes } from "@/lib/placeholder";
 import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(
     null,
   );
@@ -18,8 +28,14 @@ export default function page() {
   };
 
   const handleDelete = (campagne: Campagne) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(campagne);
+    setSelectedCampagne(campagne);
+    setIsDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (!selectedCampagne) return;
+    console.log(selectedCampagne);
+    setIsDeleteDialogOpen(false);
   };
 
   return (
@@ -49,6 +65,28 @@ export default function page() {
         onOpenChange={setIsDialogOpen}
         initialData={selectedCampagne ?? undefined}
       />
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer la campagne</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer la campagne "
+              {selectedCampagne?.nom}" ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

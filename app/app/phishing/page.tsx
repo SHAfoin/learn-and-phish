@@ -33,12 +33,24 @@ import {
 import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
 import { ModeleMailCreateDialog } from "@/app/app/phishing/mails/ModeleMailCreateDialog";
 import { ModelePageCreateDialog } from "@/app/app/phishing/template-internet/ModelePageCreateDialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function page() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
   const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
   const [isGroupDialogOpen, setIsGroupDialogOpen] = useState(false);
+  const [isDeleteCampagneOpen, setIsDeleteCampagneOpen] = useState(false);
+  const [isDeleteMailOpen, setIsDeleteMailOpen] = useState(false);
+  const [isDeletePageOpen, setIsDeletePageOpen] = useState(false);
+  const [isDeleteGroupeOpen, setIsDeleteGroupeOpen] = useState(false);
   const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(
     null,
   );
@@ -47,18 +59,47 @@ export default function page() {
   const [selectedGroupe, setSelectedGroupe] = useState<Groupe | null>(null);
 
   const handleDeleteCampagne = (campagne: Campagne) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(campagne);
+    setSelectedCampagne(campagne);
+    setIsDeleteCampagneOpen(true);
   };
 
   const handleDeleteMail = (modele: ModeleMail) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(modele);
+    setSelectedMail(modele);
+    setIsDeleteMailOpen(true);
   };
 
   const handleDeletePage = (modele: ModelePage) => {
-    if (!window.confirm("Vous êtes sûr ?")) return;
-    console.log(modele);
+    setSelectedPage(modele);
+    setIsDeletePageOpen(true);
+  };
+
+  const handleDeleteGroupe = (groupe: Groupe) => {
+    setSelectedGroupe(groupe);
+    setIsDeleteGroupeOpen(true);
+  };
+
+  const confirmDeleteCampagne = () => {
+    if (!selectedCampagne) return;
+    console.log(selectedCampagne);
+    setIsDeleteCampagneOpen(false);
+  };
+
+  const confirmDeleteMail = () => {
+    if (!selectedMail) return;
+    console.log(selectedMail);
+    setIsDeleteMailOpen(false);
+  };
+
+  const confirmDeletePage = () => {
+    if (!selectedPage) return;
+    console.log(selectedPage);
+    setIsDeletePageOpen(false);
+  };
+
+  const confirmDeleteGroupe = () => {
+    if (!selectedGroupe) return;
+    console.log(selectedGroupe);
+    setIsDeleteGroupeOpen(false);
   };
 
   return (
@@ -343,6 +384,7 @@ export default function page() {
             setSelectedGroupe(groupe);
             setIsGroupDialogOpen(true);
           }}
+          onDelete={handleDeleteGroupe}
         />
       </div>
 
@@ -367,6 +409,97 @@ export default function page() {
         onOpenChange={setIsGroupDialogOpen}
         initialData={selectedGroupe ?? undefined}
       />
+      <Dialog
+        open={isDeleteCampagneOpen}
+        onOpenChange={setIsDeleteCampagneOpen}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer la campagne</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer la campagne "
+              {selectedCampagne?.nom}" ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteCampagneOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDeleteCampagne}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isDeleteMailOpen} onOpenChange={setIsDeleteMailOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer le modèle</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer le modèle "{selectedMail?.nom}"
+              ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteMailOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDeleteMail}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isDeletePageOpen} onOpenChange={setIsDeletePageOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer la page</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer la page "{selectedPage?.nom}" ?
+              Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeletePageOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDeletePage}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isDeleteGroupeOpen} onOpenChange={setIsDeleteGroupeOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer le groupe</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer le groupe "
+              {selectedGroupe?.nom}" ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteGroupeOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDeleteGroupe}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

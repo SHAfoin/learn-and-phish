@@ -31,12 +31,14 @@ interface GroupesTableProps {
   groupes: Groupe[];
   onCreate: () => void;
   onEdit: (groupe: Groupe) => void;
+  onDelete?: (groupe: Groupe) => void;
 }
 
 export default function GroupesTable({
   groupes,
   onCreate,
   onEdit,
+  onDelete,
 }: GroupesTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -106,7 +108,10 @@ export default function GroupesTable({
                         <DropdownMenuItem onClick={() => onEdit(groupe)}>
                           Modifier
                         </DropdownMenuItem>
-                        <DropdownMenuItem variant="destructive">
+                        <DropdownMenuItem
+                          variant="destructive"
+                          onClick={() => onDelete?.(groupe)}
+                        >
                           Supprimer
                         </DropdownMenuItem>
                       </DropdownMenuContent>
