@@ -131,7 +131,7 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
 
-        <ChartSection />
+        <ChartSection utilisateurs={utilisateurs} />
       </div>
 
       <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden p-5">
