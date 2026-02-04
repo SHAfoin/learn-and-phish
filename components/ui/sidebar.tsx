@@ -8,7 +8,7 @@ export default function Sidebar() {
         <img src="/svg/phishy_icon.svg" alt="" />
         <div className="flex flex-col gap-6 p-4">
           <Link
-            href="/app/dashboard"
+            href="/app"
             className="group relative flex h-12 w-12 items-center justify-center overflow-visible rounded-lg transition-all hover:bg-ocean-700"
           >
             <img
