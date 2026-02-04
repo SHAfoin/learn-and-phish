@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import InfoTooltip from "@/components/ui/InfoTooltip";
 import {
   Table,
   TableBody,
@@ -115,13 +116,23 @@ export function GroupCreateDialog({
           <DialogTitle className="text-[20px] font-bold text-black">
             {isEdit ? "Modifier un groupe" : "Créer un groupe"}
           </DialogTitle>
+          <p className="text-sm text-neutral-600 mt-2">
+            Créer et gérer un groupe d'utilisateurs destinataires pour une
+            campagne de phishing.
+          </p>
         </DialogHeader>
 
         <div className="flex flex-col gap-6 mt-7">
           <div className="flex flex-col gap-3">
-            <Label htmlFor="groupe-nom" className="text-[14px] text-ocean-950">
-              Nom du groupe <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="groupe-nom"
+                className="text-[14px] text-ocean-950"
+              >
+                Nom du groupe <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Nom distinct du groupe utilisé pour cibler des destinataires." />
+            </div>
             <Input
               id="groupe-nom"
               placeholder="Nom du groupe"
@@ -132,9 +143,12 @@ export function GroupCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label className="text-[14px] text-ocean-950">
-              Ajouter des utilisateurs <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label className="text-[14px] text-ocean-950">
+                Ajouter des utilisateurs <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Ajoutez des utilisateurs au groupe ; l'email est requis." />
+            </div>
             <div className="flex flex-col gap-3">
               <div className="grid grid-cols-1 xl:grid-cols-5 gap-3 items-end">
                 <Input

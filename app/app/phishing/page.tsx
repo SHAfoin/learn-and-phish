@@ -19,20 +19,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import GroupesTable from "@/app/app/phishing/GroupesTable";
+import ProfilsEnvoiTable from "@/app/app/phishing/ProfilsEnvoiTable";
 import { GroupCreateDialog } from "@/app/app/phishing/GroupCreateDialog";
 import {
   Campagne,
   Groupe,
   ModeleMail,
   ModelePage,
+  ProfilEnvoi,
   campagnes,
   groupes,
   modelesMails,
   modelesPages,
+  profilsEnvoi,
 } from "@/lib/placeholder";
 import { CampaignCreateDialog } from "@/app/app/phishing/campagnes/CampaignCreateDialog";
 import { ModeleMailCreateDialog } from "@/app/app/phishing/mails/ModeleMailCreateDialog";
 import { ModelePageCreateDialog } from "@/app/app/phishing/template-internet/ModelePageCreateDialog";
+import { ProfilsEnvoiCreateDialog } from "@/app/app/phishing/ProfilsEnvoiCreateDialog";
 import {
   Dialog,
   DialogContent,
@@ -47,16 +51,21 @@ export default function page() {
   const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
   const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
   const [isGroupDialogOpen, setIsGroupDialogOpen] = useState(false);
+  const [isProfilDialogOpen, setIsProfilDialogOpen] = useState(false);
   const [isDeleteCampagneOpen, setIsDeleteCampagneOpen] = useState(false);
   const [isDeleteMailOpen, setIsDeleteMailOpen] = useState(false);
   const [isDeletePageOpen, setIsDeletePageOpen] = useState(false);
   const [isDeleteGroupeOpen, setIsDeleteGroupeOpen] = useState(false);
+  const [isDeleteProfilOpen, setIsDeleteProfilOpen] = useState(false);
   const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(
     null,
   );
   const [selectedMail, setSelectedMail] = useState<ModeleMail | null>(null);
   const [selectedPage, setSelectedPage] = useState<ModelePage | null>(null);
   const [selectedGroupe, setSelectedGroupe] = useState<Groupe | null>(null);
+  const [selectedProfil, setSelectedProfil] = useState<ProfilEnvoi | null>(
+    null,
+  );
 
   const handleDeleteCampagne = (campagne: Campagne) => {
     setSelectedCampagne(campagne);
@@ -76,6 +85,11 @@ export default function page() {
   const handleDeleteGroupe = (groupe: Groupe) => {
     setSelectedGroupe(groupe);
     setIsDeleteGroupeOpen(true);
+  };
+
+  const handleDeleteProfil = (profil: ProfilEnvoi) => {
+    setSelectedProfil(profil);
+    setIsDeleteProfilOpen(true);
   };
 
   const confirmDeleteCampagne = () => {
@@ -100,6 +114,12 @@ export default function page() {
     if (!selectedGroupe) return;
     console.log(selectedGroupe);
     setIsDeleteGroupeOpen(false);
+  };
+
+  const confirmDeleteProfil = () => {
+    if (!selectedProfil) return;
+    console.log(selectedProfil);
+    setIsDeleteProfilOpen(false);
   };
 
   return (
@@ -371,6 +391,25 @@ export default function page() {
         </div>
       </div>
 
+      {/* Profils d'envoi Section */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-2xl text-ocean-950 font-bold">
+          Profils d&apos;envoi
+        </h2>
+        <ProfilsEnvoiTable
+          profils={profilsEnvoi}
+          onCreate={() => {
+            setSelectedProfil(null);
+            setIsProfilDialogOpen(true);
+          }}
+          onEdit={(profil) => {
+            setSelectedProfil(profil);
+            setIsProfilDialogOpen(true);
+          }}
+          onDelete={handleDeleteProfil}
+        />
+      </div>
+
       {/* Groupes Section */}
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl text-ocean-950 font-bold">Groupes</h2>
@@ -408,6 +447,11 @@ export default function page() {
         open={isGroupDialogOpen}
         onOpenChange={setIsGroupDialogOpen}
         initialData={selectedGroupe ?? undefined}
+      />
+      <ProfilsEnvoiCreateDialog
+        open={isProfilDialogOpen}
+        onOpenChange={setIsProfilDialogOpen}
+        initialData={selectedProfil ?? undefined}
       />
       <Dialog
         open={isDeleteCampagneOpen}
@@ -495,6 +539,28 @@ export default function page() {
               Annuler
             </Button>
             <Button variant="destructive" onClick={confirmDeleteGroupe}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isDeleteProfilOpen} onOpenChange={setIsDeleteProfilOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer le profil</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer le profil "
+              {selectedProfil?.nom}" ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteProfilOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDeleteProfil}>
               Supprimer
             </Button>
           </DialogFooter>

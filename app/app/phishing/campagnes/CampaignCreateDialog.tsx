@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import InfoTooltip from "@/components/ui/InfoTooltip";
 import {
   Select,
   SelectContent,
@@ -32,6 +33,7 @@ import {
   groupes,
   modelesMails,
   modelesPages,
+  profilsEnvoi,
 } from "@/lib/placeholder";
 
 interface CampaignCreateDialogProps {
@@ -50,6 +52,7 @@ export function CampaignCreateDialog({
   const [url, setUrl] = useState("");
   const [templateMailId, setTemplateMailId] = useState("");
   const [templatePageId, setTemplatePageId] = useState("");
+  const [profilEnvoiId, setProfilEnvoiId] = useState("");
   const [dateDebut, setDateDebut] = useState<Date>();
   const [dateFin, setDateFin] = useState<Date>();
   const [envoyerMaintenant, setEnvoyerMaintenant] = useState(false);
@@ -82,6 +85,7 @@ export function CampaignCreateDialog({
     setUrl(initialData.url ?? "");
     setTemplateMailId(mailMatch ? mailMatch.id.toString() : "");
     setTemplatePageId(pageMatch ? pageMatch.id.toString() : "");
+    setProfilEnvoiId("");
     setDateDebut(parseDateFromString(initialData.dateDebut));
     setDateFin(parseDateFromString(initialData.dateFin));
     setEnvoyerMaintenant(false);
@@ -95,6 +99,7 @@ export function CampaignCreateDialog({
       url,
       templateMailId: Number(templateMailId),
       templatePageId: Number(templatePageId),
+      profilEnvoiId: Number(profilEnvoiId),
       dateDebut: formatDateToDisplay(dateDebut),
       dateFin: dateFin ? formatDateToDisplay(dateFin) : undefined,
       envoyerMaintenant,
@@ -110,6 +115,7 @@ export function CampaignCreateDialog({
       url,
       templateMailId: Number(templateMailId),
       templatePageId: Number(templatePageId),
+      profilEnvoiId: Number(profilEnvoiId),
       dateDebut: formatDateToDisplay(dateDebut),
       dateFin: dateFin ? formatDateToDisplay(dateFin) : undefined,
       envoyerMaintenant,
@@ -124,6 +130,7 @@ export function CampaignCreateDialog({
       !url ||
       !templateMailId ||
       !templatePageId ||
+      !profilEnvoiId ||
       !dateDebut
     ) {
       alert("Veuillez remplir tous les champs obligatoires");
@@ -156,15 +163,22 @@ export function CampaignCreateDialog({
           <DialogTitle className="text-[20px] font-bold text-black">
             {isEdit ? "Modifier une campagne" : "Créer une nouvelle campagne"}
           </DialogTitle>
+          <p className="text-sm text-neutral-600 mt-2">
+            Planifier une campagne en sélectionnant groupe, mail, page, et dates
+            d'envoi.
+          </p>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 mt-7">
           {/* Nom et Groupe */}
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label htmlFor="nom" className="text-[14px] text-ocean-950">
-                Choisir un nom <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="nom" className="text-[14px] text-ocean-950">
+                  Choisir un nom <span className="text-red-500">*</span>
+                </Label>
+                <InfoTooltip text="Nom de la campagne visible dans la liste des campagnes." />
+              </div>
               <Input
                 id="nom"
                 placeholder="Nom de la campagne"
@@ -175,9 +189,12 @@ export function CampaignCreateDialog({
             </div>
 
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label htmlFor="groupe" className="text-[14px] text-ocean-950">
-                Choisir un groupe <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="groupe" className="text-[14px] text-ocean-950">
+                  Choisir un groupe <span className="text-red-500">*</span>
+                </Label>
+                <InfoTooltip text="Sélectionnez le groupe de destinataires cible pour cette campagne." />
+              </div>
               <Select value={groupeId} onValueChange={setGroupeId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
                   <SelectValue placeholder="Groupe : " />
@@ -195,10 +212,13 @@ export function CampaignCreateDialog({
 
           {/* URL */}
           <div className="flex flex-col gap-3">
-            <Label htmlFor="url" className="text-[14px] text-ocean-950">
-              Saisir l&apos;URL de la landing page{" "}
-              <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label htmlFor="url" className="text-[14px] text-ocean-950">
+                Saisir l&apos;URL de la landing page{" "}
+                <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="URL de la page de destination utilisée pour collecter les clics." />
+            </div>
             <Input
               id="url"
               placeholder="http://exemple.com"
@@ -211,9 +231,12 @@ export function CampaignCreateDialog({
           {/* Mail et Template */}
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label htmlFor="mail" className="text-[14px] text-ocean-950">
-                Choisir un mail <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="mail" className="text-[14px] text-ocean-950">
+                  Choisir un mail <span className="text-red-500">*</span>
+                </Label>
+                <InfoTooltip text="Modèle de mail utilisé pour l'envoi aux destinataires." />
+              </div>
               <Select value={templateMailId} onValueChange={setTemplateMailId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
                   <SelectValue placeholder="Mail : " />
@@ -229,9 +252,15 @@ export function CampaignCreateDialog({
             </div>
 
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label htmlFor="template" className="text-[14px] text-ocean-950">
-                Choisir un template <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label
+                  htmlFor="template"
+                  className="text-[14px] text-ocean-950"
+                >
+                  Choisir un template <span className="text-red-500">*</span>
+                </Label>
+                <InfoTooltip text="Template de page web affichée après clic sur le mail." />
+              </div>
               <Select value={templatePageId} onValueChange={setTemplatePageId}>
                 <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
                   <SelectValue placeholder="Template : " />
@@ -247,13 +276,41 @@ export function CampaignCreateDialog({
             </div>
           </div>
 
+          <div className="flex flex-col gap-3 w-[417px]">
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="profil-envoi"
+                className="text-[14px] text-ocean-950"
+              >
+                Choisir un profil d&apos;envoi{" "}
+                <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Profil SMTP utilisé pour envoyer les emails de cette campagne." />
+            </div>
+            <Select value={profilEnvoiId} onValueChange={setProfilEnvoiId}>
+              <SelectTrigger className="bg-white border-neutral-300 rounded-[5px] w-full">
+                <SelectValue placeholder="Profil d'envoi : " />
+              </SelectTrigger>
+              <SelectContent>
+                {profilsEnvoi.map((profil) => (
+                  <SelectItem key={profil.id} value={profil.id.toString()}>
+                    {profil.nom} (SMTP)
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Dates */}
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label className="text-[14px] text-ocean-950">
-                Choisir la date de lancement{" "}
-                <span className="text-red-500">*</span>
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label className="text-[14px] text-ocean-950">
+                  Choisir la date de lancement{" "}
+                  <span className="text-red-500">*</span>
+                </Label>
+                <InfoTooltip text="Date de lancement souhaitée; requise pour planification." />
+              </div>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -283,9 +340,12 @@ export function CampaignCreateDialog({
             </div>
 
             <div className="flex flex-col gap-3 w-[417px]">
-              <Label className="text-[14px] text-ocean-950">
-                Choisir la date de fin des envois
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label className="text-[14px] text-ocean-950">
+                  Choisir la date de fin des envois
+                </Label>
+                <InfoTooltip text="Date de fin optionnelle; laisser vide si envoi continu." />
+              </div>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button

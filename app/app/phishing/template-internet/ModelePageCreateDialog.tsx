@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import InfoTooltip from "@/components/ui/InfoTooltip";
 import { ModelePage } from "@/lib/placeholder";
 
 interface ModelePageCreateDialogProps {
@@ -80,16 +81,22 @@ export function ModelePageCreateDialog({
               ? "Modifier un modèle de page web"
               : "Créer un modèle de page web"}
           </DialogTitle>
+          <p className="text-sm text-neutral-600 mt-2">
+            Créer ou modifier une page de redirection pour la landing page.
+          </p>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 mt-7">
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-page-nom"
-              className="text-[14px] text-ocean-950"
-            >
-              Nom du modèle <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-page-nom"
+                className="text-[14px] text-ocean-950"
+              >
+                Nom du modèle <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Nom interne du modèle de page pour lister et choisir." />
+            </div>
             <Input
               id="modele-page-nom"
               placeholder="Nom du modèle"
@@ -100,12 +107,15 @@ export function ModelePageCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-page-url"
-              className="text-[14px] text-ocean-950"
-            >
-              URL de redirection <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-page-url"
+                className="text-[14px] text-ocean-950"
+              >
+                URL de redirection <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="URL où l'utilisateur sera redirigé après interaction." />
+            </div>
             <Input
               id="modele-page-url"
               placeholder="https://exemple.com/redirection"
@@ -116,12 +126,15 @@ export function ModelePageCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-page-html"
-              className="text-[14px] text-ocean-950"
-            >
-              Contenu HTML <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-page-html"
+                className="text-[14px] text-ocean-950"
+              >
+                Contenu HTML <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="HTML complet de la page; prévisualisation disponible ci-dessous." />
+            </div>
             <textarea
               id="modele-page-html"
               placeholder="<html>..."

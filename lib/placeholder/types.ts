@@ -40,6 +40,18 @@ export interface ModelePage {
   url?: string;
 }
 
+export type ProfilEnvoiType = "smtp";
+
+export interface ProfilEnvoi {
+  id: number;
+  nom: string;
+  from: string;
+  hote: string;
+  username: string;
+  password: string;
+  type: ProfilEnvoiType;
+}
+
 export interface User {
   id: number;
   prenom: string;

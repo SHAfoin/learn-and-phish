@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import InfoTooltip from "@/components/ui/InfoTooltip";
 import { ModeleMail } from "@/lib/placeholder";
 
 interface ModeleMailCreateDialogProps {
@@ -81,16 +82,23 @@ export function ModeleMailCreateDialog({
           <DialogTitle className="text-[20px] font-bold text-black">
             {isEdit ? "Modifier un modèle de mail" : "Créer un modèle de mail"}
           </DialogTitle>
+          <p className="text-sm text-neutral-600 mt-2">
+            Créer et éditer le contenu HTML et les métadonnées d'un modèle
+            d'email.
+          </p>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 mt-7">
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-mail-nom"
-              className="text-[14px] text-ocean-950"
-            >
-              Nom du modèle <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-mail-nom"
+                className="text-[14px] text-ocean-950"
+              >
+                Nom du modèle <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Nom interne du modèle pour le retrouver facilement." />
+            </div>
             <Input
               id="modele-mail-nom"
               placeholder="Nom du modèle"
@@ -101,12 +109,15 @@ export function ModeleMailCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-mail-objet"
-              className="text-[14px] text-ocean-950"
-            >
-              Objet du mail <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-mail-objet"
+                className="text-[14px] text-ocean-950"
+              >
+                Objet du mail <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Sujet de l'email tel qu'il apparaîtra au destinataire." />
+            </div>
             <Input
               id="modele-mail-objet"
               placeholder="Objet du mail"
@@ -117,13 +128,16 @@ export function ModeleMailCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-mail-expediteur"
-              className="text-[14px] text-ocean-950"
-            >
-              Adresse de l&apos;expéditeur (spoofing){" "}
-              <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-mail-expediteur"
+                className="text-[14px] text-ocean-950"
+              >
+                Adresse de l&apos;expéditeur (spoofing) " "
+                <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="Adresse affichée comme expéditeur (attention au spoofing)." />
+            </div>
             <Input
               id="modele-mail-expediteur"
               placeholder="exemple@entreprise.com"
@@ -134,12 +148,15 @@ export function ModeleMailCreateDialog({
           </div>
 
           <div className="flex flex-col gap-3">
-            <Label
-              htmlFor="modele-mail-html"
-              className="text-[14px] text-ocean-950"
-            >
-              Contenu HTML <span className="text-red-500">*</span>
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label
+                htmlFor="modele-mail-html"
+                className="text-[14px] text-ocean-950"
+              >
+                Contenu HTML <span className="text-red-500">*</span>
+              </Label>
+              <InfoTooltip text="HTML complet du message; testez l'aperçu avant sauvegarde." />
+            </div>
             <textarea
               id="modele-mail-html"
               placeholder="<html>..."
