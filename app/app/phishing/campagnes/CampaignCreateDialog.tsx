@@ -169,7 +169,7 @@ export function CampaignCreateDialog({
           </p>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4 mt-7">
+        <div className="flex flex-col gap-4">
           {/* Nom et Groupe */}
           <div className="flex gap-[11px]">
             <div className="flex flex-col gap-3 w-[417px]">

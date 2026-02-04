@@ -88,7 +88,7 @@ export function ModeleMailCreateDialog({
           </p>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4 mt-7">
+        <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <Label
