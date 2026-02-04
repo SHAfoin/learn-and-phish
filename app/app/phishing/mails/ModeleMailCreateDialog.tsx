@@ -76,7 +76,7 @@ export function ModeleMailCreateDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[920px] bg-ocean-50 rounded-[10px] p-[30px]">
+      <DialogContent className="w-full max-w-[1520px] sm:!max-w-[1520px] bg-ocean-50 rounded-[10px] p-[30px] max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-[20px] font-bold text-black">
             {isEdit ? "Modifier un modèle de mail" : "Créer un modèle de mail"}
@@ -146,6 +146,20 @@ export function ModeleMailCreateDialog({
               value={contenuHtml}
               onChange={(e) => setContenuHtml(e.target.value)}
               className="min-h-[180px] rounded-[5px] border border-neutral-300 bg-white p-3 text-sm focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-neutral-400"
+            />
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <Label
+              htmlFor="modele-mail-html"
+              className="text-[14px] text-ocean-950"
+            >
+              Aperçu
+            </Label>
+            <iframe
+              srcDoc={contenuHtml}
+              sandbox="allow-same-origin"
+              className="h-[560px] rounded-[5px] border border-neutral-300 bg-white p-3 text-sm"
             />
           </div>
 
