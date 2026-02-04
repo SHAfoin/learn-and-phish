@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import CampagneActions from "./CampagneActions";
+import ChartSection from "./ChartSection";
 
 const getCampagneStatutColor = (statut: string) => {
   switch (statut) {
@@ -130,12 +131,7 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
 
-        <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-ocean-950">Graphique</h2>
-          </div>
-          <div className="h-[320px] w-full rounded-[12px] border border-dashed border-neutral-300 bg-white" />
-        </div>
+        <ChartSection />
       </div>
 
       <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden p-5">
