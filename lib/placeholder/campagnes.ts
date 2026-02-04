@@ -1,4 +1,62 @@
-import { Campagne } from "./types";
+import { Campagne, CampagneUtilisateur } from "./types";
+
+const utilisateursParDefaut: CampagneUtilisateur[] = [
+  {
+    id: 1,
+    prenom: "Camille",
+    nom: "Durand",
+    email: "camille.durand@acme.fr",
+    role: "Employé",
+    statut: "email envoyé",
+  },
+  {
+    id: 2,
+    prenom: "Léo",
+    nom: "Martin",
+    email: "leo.martin@acme.fr",
+    role: "Manager",
+    statut: "email ouvert",
+  },
+  {
+    id: 3,
+    prenom: "Sarah",
+    nom: "Benali",
+    email: "sarah.benali@acme.fr",
+    role: "Comptabilité",
+    statut: "lien cliquée",
+  },
+  {
+    id: 4,
+    prenom: "Nicolas",
+    nom: "Petit",
+    email: "nicolas.petit@acme.fr",
+    role: "Support",
+    statut: "données envoyées",
+  },
+  {
+    id: 5,
+    prenom: "Inès",
+    nom: "Bernard",
+    email: "ines.bernard@acme.fr",
+    role: "RH",
+    statut: "email envoyé",
+  },
+  {
+    id: 6,
+    prenom: "Hugo",
+    nom: "Lambert",
+    email: "hugo.lambert@acme.fr",
+    role: "IT",
+    statut: "email ouvert",
+  },
+];
+
+const utilisateursParCampagne: Record<number, CampagneUtilisateur[]> = {
+  1: utilisateursParDefaut,
+  2: [...utilisateursParDefaut].reverse(),
+  3: utilisateursParDefaut.slice(0, 4),
+  4: utilisateursParDefaut.slice(2),
+};
 
 export const campagnes: Campagne[] = [
   {
@@ -173,3 +231,14 @@ export const campagnes: Campagne[] = [
     dateFin: "12/01/26",
   },
 ];
+
+export async function fetchCampagneById(id: number): Promise<Campagne | null> {
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  const campagne = campagnes.find((item) => item.id === id);
+  if (!campagne) return null;
+
+  return {
+    ...campagne,
+    utilisateurs: utilisateursParCampagne[id] ?? utilisateursParDefaut,
+  };
+}

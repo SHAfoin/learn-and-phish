@@ -9,6 +9,22 @@ export interface Campagne {
   groupeId: number;
   dateDebut: string;
   dateFin?: string;
+  utilisateurs?: CampagneUtilisateur[];
+}
+
+export type CampagneUtilisateurStatut =
+  | "email envoyé"
+  | "email ouvert"
+  | "lien cliquée"
+  | "données envoyées";
+
+export interface CampagneUtilisateur {
+  id: number;
+  prenom: string;
+  nom: string;
+  email: string;
+  role: string;
+  statut: CampagneUtilisateurStatut;
 }
 
 export interface ModeleMail {

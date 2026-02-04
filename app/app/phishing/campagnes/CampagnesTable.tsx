@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -97,7 +98,12 @@ export default function CampagnesTable({
               currentCampagnes.map((campagne) => (
                 <TableRow key={campagne.id}>
                   <TableCell className="font-medium w-[250px] min-w-[250px] max-w-[250px]">
-                    <div className="truncate">{campagne.nom}</div>
+                    <Link
+                      href={`/app/phishing/campagnes/${campagne.id}`}
+                      className="truncate text-ocean-700 hover:underline"
+                    >
+                      {campagne.nom}
+                    </Link>
                   </TableCell>
                   <TableCell className="w-[140px] min-w-[140px] max-w-[140px]">
                     {campagne.dateLancement}

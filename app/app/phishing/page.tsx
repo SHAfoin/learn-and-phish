@@ -94,7 +94,12 @@ export default function page() {
                   <TableRow key={campagne.id}>
                     <TableCell className="font-medium">
                       <div className="truncate max-w-[250px]">
-                        {campagne.nom}
+                        <Link
+                          href={`/app/phishing/campagnes/${campagne.id}`}
+                          className="truncate text-ocean-700 hover:underline"
+                        >
+                          {campagne.nom}
+                        </Link>
                       </div>
                     </TableCell>
                     <TableCell>{campagne.dateLancement}</TableCell>
