@@ -47,6 +47,7 @@ export default function page() {
 
   // Score d'exposition fixe entre 0 et 100
   const scoreExposition = 5;
+  const nombreSitesExposés = 47;
   const chartData = [
     {
       visitors: scoreExposition,
@@ -117,29 +118,12 @@ export default function page() {
         <div className="lg:col-span-1 flex flex-col gap-4">
           {/* Domaine d'exposition Chart */}
           <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-5">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-ocean-950">
-                Domaine d&apos;exposition
-              </h3>
-              <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                <SelectTrigger className="w-24 h-8">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="tous">Tous</SelectItem>
-                  <SelectItem value="mois">Mois</SelectItem>
-                  <SelectItem value="semaine">Semaine</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="h-64 flex items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-lg border-2 border-dashed border-neutral-300">
+            <div className="h-32 flex items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-lg">
               <div className="text-center">
-                <p className="text-neutral-500 font-semibold text-sm">
-                  Graphique circulaire
+                <p className="text-6xl font-bold text-ocean-950">
+                  {nombreSitesExposés}
                 </p>
-                <p className="text-neutral-400 text-xs mt-1">
-                  Distribution par domaine
-                </p>
+                <p className="text-sm text-neutral-600 mt-2">sites exposés</p>
               </div>
             </div>
           </div>
