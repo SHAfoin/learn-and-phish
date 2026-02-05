@@ -4,3 +4,4 @@ export * from "./modeles-mails";
 export * from "./modeles-pages";
 export * from "./groupes";
 export * from "./profils-envoi";
+export * from "./osint";
