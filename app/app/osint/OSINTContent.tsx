@@ -13,6 +13,7 @@ import {
   PolarGrid,
 } from "recharts";
 import { groupesOSINT, GroupeOSINT } from "@/lib/placeholder/osint";
+import { groupes } from "@/lib/placeholder";
 
 const chartConfig = {
   visitors: {
@@ -35,6 +36,7 @@ interface OSINTData {
   groupes: GroupeOSINT[];
   scoreExposition: number;
   nombreSitesExposés: number;
+  dateDernierScan: Date;
 }
 
 // Fonction pour récupérer les données OSINT
@@ -48,7 +50,8 @@ async function fetchOSINTData(): Promise<OSINTData> {
   return {
     groupes: groupesOSINT,
     scoreExposition: 5,
-    nombreSitesExposés: 47,
+    nombreSitesExposés: groupesOSINT.length,
+    dateDernierScan: new Date("2026-02-05T14:30:00"),
   };
 }
 
@@ -57,6 +60,7 @@ export default function OSINTContent() {
   const [groupes, setGroupes] = useState<GroupeOSINT[]>([]);
   const [scoreExposition, setScoreExposition] = useState(0);
   const [nombreSitesExposés, setNombreSitesExposés] = useState(0);
+  const [dateDernierScan, setDateDernierScan] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Charger les données au montage du composant
@@ -68,6 +72,7 @@ export default function OSINTContent() {
         setGroupes(data.groupes);
         setScoreExposition(data.scoreExposition);
         setNombreSitesExposés(data.nombreSitesExposés);
+        setDateDernierScan(data.dateDernierScan);
       } catch (error) {
         console.error("Erreur lors du chargement des données:", error);
       } finally {
@@ -77,6 +82,15 @@ export default function OSINTContent() {
 
     loadData();
   }, []);
+
+  // Fonction pour lancer un nouveau scan
+  const handleNouveauScan = async () => {
+    console.log("Lancement d'un nouveau scan OSINT...");
+    // TODO: Implémenter l'appel API pour lancer un nouveau scan
+    // await fetch('/api/osint/scan', { method: 'POST' });
+    // Puis recharger les données
+    // await loadData();
+  };
 
   const chartData = [
     {
@@ -105,10 +119,26 @@ export default function OSINTContent() {
         <div>
           <p className="font-bold">Statut : Terminé</p>
           <p className="text-sm text-blue-100">
-            Dernier Scan réalisé : DD/MM/YYYY à HH:MM:SS
+            Dernier Scan réalisé :{" "}
+            {dateDernierScan
+              ? dateDernierScan.toLocaleDateString("fr-FR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                }) +
+                " à " +
+                dateDernierScan.toLocaleTimeString("fr-FR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                })
+              : "Aucun scan effectué"}
           </p>
         </div>
-        <Button className="bg-blue-700 hover:bg-blue-800 text-white">
+        <Button
+          className="bg-blue-700 hover:bg-blue-800 text-white"
+          onClick={handleNouveauScan}
+        >
           Nouveau scan
         </Button>
       </div>
