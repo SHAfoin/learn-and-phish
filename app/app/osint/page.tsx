@@ -55,6 +55,11 @@ export default function page() {
     },
   ];
 
+  // Filtrer les groupes selon la recherche
+  const groupesFiltres = groupesOSINT.filter((groupe) =>
+    groupe.nom.toLowerCase().includes(searchDomain.toLowerCase()),
+  );
+
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
       {/* Page Header */}
@@ -102,14 +107,22 @@ export default function page() {
 
             {/* Groupes List */}
             <div className="space-y-2 max-h-96 overflow-y-auto">
-              {groupesOSINT.map((groupe) => (
-                <div
-                  key={groupe.id}
-                  className="flex items-center gap-2 p-2 hover:bg-neutral-100 rounded"
-                >
-                  <span className="text-sm text-neutral-700">{groupe.nom}</span>
+              {groupesFiltres.length === 0 ? (
+                <div className="p-4 text-center text-neutral-500 text-sm">
+                  Aucun groupe trouvé
                 </div>
-              ))}
+              ) : (
+                groupesFiltres.map((groupe) => (
+                  <div
+                    key={groupe.id}
+                    className="flex items-center gap-2 p-2 hover:bg-neutral-100 rounded"
+                  >
+                    <span className="text-sm text-neutral-700">
+                      {groupe.nom}
+                    </span>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
