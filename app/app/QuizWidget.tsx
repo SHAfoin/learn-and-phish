@@ -49,7 +49,11 @@ export default function QuizWidget({
           </svg>
         </div>
         <Link href={url}>
-          <img src="/svg/icons/arrow.svg" alt="Flèche" className="w-12 h-12" />
+          <img 
+            src="/svg/icons/arrow.svg" 
+            alt="Flèche" 
+            className="w-12 h-12 transition-transform duration-300 ease-in-out hover:scale-110 hover:translate-x-1" 
+          />
         </Link>
       </div>
     </div>
