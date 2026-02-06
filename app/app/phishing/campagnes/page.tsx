@@ -34,6 +34,7 @@ export default function page() {
 
   const confirmDelete = () => {
     if (!selectedCampagne) return;
+    //TODO: Appeler l'API DELETE /api/campagnes/{id} pour supprimer la campagne
     console.log(selectedCampagne);
     setIsDeleteDialogOpen(false);
   };

@@ -24,13 +24,13 @@ export default function CampagneActions({
   const [isCompleteDialogOpen, setIsCompleteDialogOpen] = useState(false);
 
   const handleComplete = () => {
-    // TODO: Implement API call to complete campaign
+    //TODO: Appeler l'API POST /api/campagnes/{id}/complete pour marquer la campagne comme terminée
     console.log("Compléter la campagne:", campagneId);
     setIsCompleteDialogOpen(false);
   };
 
   const handleDelete = () => {
-    // TODO: Implement API call to delete campaign
+    //TODO: Appeler l'API DELETE /api/campagnes/{id} pour supprimer la campagne
     console.log("Supprimer la campagne:", campagneId);
     setIsDeleteDialogOpen(false);
   };

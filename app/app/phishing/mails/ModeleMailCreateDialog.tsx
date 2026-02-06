@@ -61,6 +61,7 @@ export function ModeleMailCreateDialog({
   ): Promise<string | null> => {
     // Placeholder function for future API integration
     // Should POST to /api/conversion/submit with email content
+    //TODO: Appeler l'API POST /api/conversion/submit pour convertir l'email en HTML
     console.log("Submitting email for conversion:", email);
     console.log("[API PLACEHOLDER] POST /api/conversion/submit");
 
@@ -74,6 +75,7 @@ export function ModeleMailCreateDialog({
   ): Promise<ConversionResponse> => {
     // Placeholder function for future API integration
     // Should GET /api/conversion/status/:jobId
+    //TODO: Appeler l'API GET /api/conversion/status/{jobId} pour vérifier le statut de conversion
     console.log("Checking conversion status for jobId:", jobId);
     console.log("[API PLACEHOLDER] GET /api/conversion/status/" + jobId);
 
@@ -152,11 +154,13 @@ export function ModeleMailCreateDialog({
 
   const creerModeleMail = () => {
     // Fonction vide pour future intégration API (création)
+    //TODO: Appeler l'API POST /api/modeles-mails pour créer un nouveau modèle de mail
     console.log({ nom, objet, expediteur, contenuHtml });
   };
 
   const modifierModeleMail = () => {
     // Fonction vide pour future intégration API (modification)
+    //TODO: Appeler l'API PUT /api/modeles-mails/{id} pour mettre à jour le modèle de mail
     console.log({
       id: initialData?.id,
       nom,

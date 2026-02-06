@@ -45,6 +45,7 @@ async function fetchOSINTData(): Promise<OSINTData> {
   // Simuler un délai d'API
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
+  //TODO: Appeler l'API GET /api/osint pour récupérer les données OSINT réelles
   // Pour l'instant, retourner les données placeholder
   // Plus tard, remplacer par: const response = await fetch('/api/osint');
   return {
@@ -85,6 +86,7 @@ export default function OSINTContent() {
 
   // Fonction pour lancer un nouveau scan
   const handleNouveauScan = async () => {
+    //TODO: Appeler l'API POST /api/osint/scan pour lancer un nouveau scan OSINT
     console.log("Lancement d'un nouveau scan OSINT...");
     // TODO: Implémenter l'appel API pour lancer un nouveau scan
     // await fetch('/api/osint/scan', { method: 'POST' });
