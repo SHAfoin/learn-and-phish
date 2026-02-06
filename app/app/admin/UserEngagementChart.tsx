@@ -2,19 +2,18 @@
 
 export default function UserEngagementChart() {
   return (
-    <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-5 overflow-hidden">
-      <div className="border-b border-neutral-300 flex items-start pb-5 mb-5">
-        <div className="flex-1">
-          <p className="text-neutral-500 text-sm">
-            Nombre d'utilisateurs actifs durants les 2 derniers mois
-          </p>
-        </div>
-        <div className="bg-neutral-100 border-b border-l border-neutral-300 px-[31px] py-3 flex flex-col gap-1">
-          <p className="text-neutral-500 text-xs">Inscrits</p>
-          <p className="text-ocean-950 font-bold text-2xl">57</p>
+    <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden">
+      <div className="border-b border-neutral-300 flex items-center mb-5 h-18">
+        <p className="text-neutral-500 text-sm flex-1 p-5">
+          Nombre d'utilisateurs actifs durants les 2 derniers mois
+        </p>
+
+        <div className="bg-neutral-100 border-l h-full border-neutral-300 py-4 px-8 flex justify-center items-end gap-4">
+          <p className="text-ocean-950 font-bold text-4xl">57</p>
+          <p className="text-neutral-500 text-md">inscrits au total</p>
         </div>
       </div>
-      <div className="flex flex-col gap-2 items-center">
+      <div className="flex flex-col gap-2 p-5 items-center">
         <div className="w-full h-64 bg-gradient-to-br from-neutral-100 to-neutral-50 rounded flex items-center justify-center">
           <p className="text-neutral-400 text-sm">
             Placeholder: Graphique d'engagement
