@@ -32,6 +32,16 @@ export interface ModeleMail {
   nom: string;
   expediteur: string;
   objet: string;
+  contenuHtml?: string;
+}
+
+export type EmailCreationMode = "manuel" | "template" | "conversion-ia";
+
+export interface ConversionResponse {
+  jobId: string;
+  status: "pending" | "completed" | "failed";
+  contenuHtml?: string;
+  error?: string;
 }
 
 export interface ModelePage {
