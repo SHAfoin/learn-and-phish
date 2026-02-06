@@ -105,6 +105,7 @@ export function GroupCreateDialog({
       utilisateurs,
     };
 
+    //TODO: Appeler l'API POST /api/groupes (création) ou PUT /api/groupes/{id} (modification) pour sauvegarder le groupe
     console.log(payload);
     onOpenChange(false);
   };

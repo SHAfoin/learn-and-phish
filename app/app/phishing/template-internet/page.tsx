@@ -32,6 +32,7 @@ export default function page() {
 
   const confirmDelete = () => {
     if (!selectedPage) return;
+    //TODO: Appeler l'API DELETE /api/modeles-pages/{id} pour supprimer le modèle de page
     console.log(selectedPage);
     setIsDeleteDialogOpen(false);
   };

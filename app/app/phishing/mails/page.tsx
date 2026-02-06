@@ -32,6 +32,7 @@ export default function page() {
 
   const confirmDelete = () => {
     if (!selectedMail) return;
+    //TODO: Appeler l'API DELETE /api/modeles-mails/{id} pour supprimer le modèle de mail
     console.log(selectedMail);
     setIsDeleteDialogOpen(false);
   };

@@ -94,30 +94,35 @@ export default function page() {
 
   const confirmDeleteCampagne = () => {
     if (!selectedCampagne) return;
+    //TODO: Appeler l'API DELETE /api/campagnes/{id} pour supprimer la campagne
     console.log(selectedCampagne);
     setIsDeleteCampagneOpen(false);
   };
 
   const confirmDeleteMail = () => {
     if (!selectedMail) return;
+    //TODO: Appeler l'API DELETE /api/modeles-mails/{id} pour supprimer le modèle de mail
     console.log(selectedMail);
     setIsDeleteMailOpen(false);
   };
 
   const confirmDeletePage = () => {
     if (!selectedPage) return;
+    //TODO: Appeler l'API DELETE /api/modeles-pages/{id} pour supprimer le modèle de page
     console.log(selectedPage);
     setIsDeletePageOpen(false);
   };
 
   const confirmDeleteGroupe = () => {
     if (!selectedGroupe) return;
+    //TODO: Appeler l'API DELETE /api/groupes/{id} pour supprimer le groupe
     console.log(selectedGroupe);
     setIsDeleteGroupeOpen(false);
   };
 
   const confirmDeleteProfil = () => {
     if (!selectedProfil) return;
+    //TODO: Appeler l'API DELETE /api/profils-envoi/{id} pour supprimer le profil d'envoi
     console.log(selectedProfil);
     setIsDeleteProfilOpen(false);
   };
