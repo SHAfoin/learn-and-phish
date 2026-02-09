@@ -251,7 +251,9 @@ export default function QuizResultsByDifficulty({
         </div>
       ) : (
         <div className="h-64 w-full flex items-center justify-center">
-          <span className="text-neutral-500">Aucune statistique disponible.</span>
+          <span className="text-neutral-500">
+            Aucune statistique disponible.
+          </span>
         </div>
       )}
     </div>

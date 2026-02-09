@@ -196,7 +196,9 @@ export default function UserEngagementChart({
           </ChartContainer>
         ) : (
           <div className="h-[250px] w-full flex items-center justify-center">
-            <span className="text-neutral-500">Aucune statistique disponible.</span>
+            <span className="text-neutral-500">
+              Aucune statistique disponible.
+            </span>
           </div>
         )}
       </div>
