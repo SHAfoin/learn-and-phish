@@ -94,7 +94,7 @@ export default function QuizResultsByCategory({
           </div>
         </div>
       ) : hasData ? (
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="h-64">
           <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
             <XAxis

@@ -9,9 +9,6 @@ export default function OSINTPage() {
         <h1 className="text-[64px] font-bold text-ocean-950 leading-tight">
           OSINT
         </h1>
-        <p className="text-ocean-700 text-lg mt-2">
-          Rechercher des empreintes numériques sur plusieurs plateformes
-        </p>
       </div>
 
       <OSINTContent />

@@ -95,7 +95,7 @@ export default function QuizResultsByDifficulty({
       ]
     : defaultChartData;
   return (
-    <div className="bg-neutral-50 rounded-[15px] xl:min-h-[250px] min-h-[350px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-6 overflow-hidden flex flex-col gap-4">
+    <div className="bg-neutral-50 rounded-[15px] xl:min-h-[250px] h-full min-h-[350px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-6 overflow-hidden flex flex-col gap-4">
       {hasStats ? (
         <div className="flex flex-1">
           <div className="flex-1 flex flex-col items-center gap-3">

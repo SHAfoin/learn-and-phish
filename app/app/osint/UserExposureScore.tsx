@@ -38,10 +38,7 @@ export default function UserExposureScore({ score }: UserExposureScoreProps) {
   ];
 
   return (
-    <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-5">
-      <h3 className="text-sm font-bold text-ocean-950 mb-4">
-        Score d&apos;exposition
-      </h3>
+    <div className="bg-neutral-50 rounded-[15px] h-full shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-5">
       <ChartContainer
         config={chartConfig}
         className="mx-auto aspect-square max-h-[250px]"
