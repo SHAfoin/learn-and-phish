@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-
-type PageType = "phishing" | "campagnes" | "mails" | "pages" | null;
+import { PageType } from "./types";
 
 interface TutorialContextType {
   currentPage: PageType;

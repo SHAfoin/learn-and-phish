@@ -1,15 +1,10 @@
-"use client";
-
-import TutorielButton from "@/components/TutorielButton";
 import Sidebar from "@/components/ui/sidebar";
-import { TutorialProvider, useTutorial } from "@/components/TutorialProvider";
-import TutorialDialog from "@/components/TutorialDialog";
+import { TutorialProvider } from "@/components/TutorialProvider";
+import TutorialManager from "@/components/TutorialManager";
 
-function LayoutContent({ children }: { children: React.ReactNode }) {
-  const { currentPage, isTutorialOpen, setIsTutorialOpen } = useTutorial();
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <TutorialProvider>
       <div className="relative w-screen overflow-clip">
         <img
           src="/svg/vagues.svg"
@@ -19,22 +14,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
         <Sidebar></Sidebar>
         <div className="pl-[15%] py-8 flex gap-20 pr-8">
           {children}
-          <TutorielButton onClick={() => setIsTutorialOpen(true)} />
+          <TutorialManager />
         </div>
       </div>
-      <TutorialDialog
-        open={isTutorialOpen}
-        onOpenChange={setIsTutorialOpen}
-        pageType={currentPage}
-      />
-    </>
-  );
-}
-
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <TutorialProvider>
-      <LayoutContent>{children}</LayoutContent>
     </TutorialProvider>
   );
 }

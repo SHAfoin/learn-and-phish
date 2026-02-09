@@ -8,11 +8,12 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { PageType } from "./types";
 
 interface TutorialDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  pageType: "phishing" | "campagnes" | "mails" | "pages" | null;
+  pageType: PageType;
 }
 
 export default function TutorialDialog({
@@ -164,8 +165,8 @@ export default function TutorialDialog({
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 mt-4">
-          {content.sections.map((section, index) => (
-            <div key={index} className="space-y-2">
+          {content.sections.map((section) => (
+            <div key={section.title} className="space-y-2">
               <h3 className="text-lg font-semibold text-ocean-900">
                 {section.title}
               </h3>
