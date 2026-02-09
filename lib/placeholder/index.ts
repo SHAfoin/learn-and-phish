@@ -6,3 +6,4 @@ export * from "./groupes";
 export * from "./profils-envoi";
 export * from "./osint";
 export * from "./activities";
+export * from "./users";

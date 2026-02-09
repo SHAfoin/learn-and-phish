@@ -16,6 +16,7 @@ import QuizResultsChart from "./QuizResultsChart";
 import QuizResultsByCategory from "./QuizResultsByCategory";
 import QuizResultsByDifficulty from "./QuizResultsByDifficulty";
 import RecentActivityTable from "./RecentActivityTable";
+import UsersContent from "./users/UsersContent";
 
 export default function page() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -40,19 +41,19 @@ export default function page() {
           <TabsList className="bg-transparent border-0 rounded-none flex gap-0">
             <TabsTrigger
               value="dashboard"
-              className="data-[state=active]:bg-ocean-600 data-[state=active]:text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Tableau de bord
             </TabsTrigger>
             <TabsTrigger
               value="users"
-              className="data-[state=active]:bg-ocean-600 data-[state=active]:text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Utilisateurs
             </TabsTrigger>
             <TabsTrigger
               value="training"
-              className="data-[state=active]:bg-ocean-600 data-[state=active]:text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Formation
             </TabsTrigger>
@@ -148,11 +149,7 @@ export default function page() {
       {/* Users Content */}
       {activeTab === "users" && (
         <div className="space-y-6">
-          <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-8">
-            <p className="text-neutral-400 text-center">
-              Section Utilisateurs - À implémenter
-            </p>
-          </div>
+          <UsersContent />
         </div>
       )}
 
