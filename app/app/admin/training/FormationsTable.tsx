@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Search, MoreHorizontalIcon } from "lucide-react";
 import {
   Table,
@@ -189,7 +190,16 @@ export default function FormationsTable({
               currentFormations.map((formation) => (
                 <TableRow key={formation.id}>
                   <TableCell className="text-sm w-[30%]">
-                    {formation.titre}
+                    {formation.type === "Quiz" ? (
+                      <Link
+                        href={`/app/admin/training/quiz/${formation.id}`}
+                        className="text-ocean-700 hover:text-ocean-900 hover:underline font-medium"
+                      >
+                        {formation.titre}
+                      </Link>
+                    ) : (
+                      formation.titre
+                    )}
                   </TableCell>
                   <TableCell className="w-[15%]">
                     <span

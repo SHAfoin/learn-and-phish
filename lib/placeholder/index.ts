@@ -7,4 +7,4 @@ export * from "./profils-envoi";
 export * from "./osint";
 export * from "./activities";
 export * from "./users";
-export * from "./formations";
+export * from "./quizzes";

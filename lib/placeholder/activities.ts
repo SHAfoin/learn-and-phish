@@ -1,15 +1,6 @@
 // TODO: Remplacer par un vrai appel API vers le backend
-export interface Activity {
-  id: number;
-  date: string;
-  user: string;
-  activity: string;
-  title: string;
-  result: {
-    status: string;
-    type: "success" | "failure";
-  };
-}
+
+import { Activity } from "./types";
 
 const activities: Activity[] = [
   {
