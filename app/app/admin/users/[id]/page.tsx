@@ -16,7 +16,7 @@ import UserActivityTable from "./UserActivityTable";
 import UserExposureScore from "../../../osint/UserExposureScore";
 import QuizResultsByCategory from "../../QuizResultsByCategory";
 import QuizResultsByDifficulty from "../../QuizResultsByDifficulty";
-import UserEngagementChart from "../../UserEngagementChart";
+import UserActivityChart from "./UserActivityChart";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -99,21 +99,31 @@ export default async function Page({ params }: PageProps) {
       {/* Main Content - Full Width Sections */}
       <div className="flex flex-col gap-6">
         {/* User Info Card */}
-        <UserInfoCard user={user} />
-
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl text-ocean-950 font-bold">Informations</h2>
+          <UserInfoCard user={user} />
+        </div>
         {/* Activity Chart */}
-        <UserEngagementChart
-          data={activityChartData}
-          title="Activité de l'utilisateur"
-        />
-
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl text-ocean-950 font-bold">
+            Graphique d'activité
+          </h2>
+          <UserActivityChart
+            data={activityChartData}
+            title="Activité de l'utilisateur par période"
+          />
+        </div>
         {/* Progress and Quiz by Difficulty Row */}
         {stats && (
           <div className="flex gap-6">
-            <div className="flex-1">
+            <div className="flex-1 gap-2 flex flex-col">
+              <h2 className="text-2xl text-ocean-950 font-bold">Progression</h2>
               <UserProgressChart />
             </div>
-            <div className="flex-[2]">
+            <div className="flex-2 gap-2 flex flex-col">
+              <h2 className="text-2xl text-ocean-950 font-bold">
+                Quiz par difficulté
+              </h2>
               <QuizResultsByDifficulty data={stats.quizResultsByDifficulty} />
             </div>
           </div>
@@ -122,17 +132,30 @@ export default async function Page({ params }: PageProps) {
         {/* Exposure Score and Quiz by Category Row */}
         {stats && (
           <div className="flex gap-6">
-            <div className="flex-1">
+            <div className="flex-1 gap-2 flex flex-col">
+              <h2 className="text-2xl text-ocean-950 font-bold">
+                Score d'exposition
+              </h2>
               <UserExposureScore score={stats.scoreExposition} />
             </div>
-            <div className="flex-[2]">
+            <div className="flex-2 gap-2 flex flex-col">
+              <h2 className="text-2xl text-ocean-950 font-bold">
+                Quiz par catégorie
+              </h2>
               <QuizResultsByCategory data={categoryData} />
             </div>
           </div>
         )}
 
         {/* Activity Table */}
-        {stats && <UserActivityTable activities={stats.recentActivities} />}
+        {stats && (
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl text-ocean-950 font-bold">
+              Activité récente
+            </h2>
+            <UserActivityTable activities={stats.recentActivities} />
+          </div>
+        )}
       </div>
     </div>
   );
