@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModeleMailsTable from "@/app/app/phishing/mails/ModeleMailsTable";
 import Link from "next/link";
 import { ModeleMail, modelesMails } from "@/lib/placeholder";
@@ -14,11 +14,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useTutorial } from "@/components/TutorialProvider";
 
 export default function page() {
+  const { setCurrentPage } = useTutorial();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedMail, setSelectedMail] = useState<ModeleMail | null>(null);
+
+  useEffect(() => {
+    setCurrentPage("mails");
+  }, [setCurrentPage]);
 
   const handleEdit = (modele: ModeleMail) => {
     setSelectedMail(modele);

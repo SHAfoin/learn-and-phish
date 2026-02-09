@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModelesPagesTable from "@/app/app/phishing/template-internet/ModelesPagesTable";
 import Link from "next/link";
 import { ModelePage, modelesPages } from "@/lib/placeholder";
@@ -14,11 +14,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useTutorial } from "@/components/TutorialProvider";
 
 export default function page() {
+  const { setCurrentPage } = useTutorial();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedPage, setSelectedPage] = useState<ModelePage | null>(null);
+
+  useEffect(() => {
+    setCurrentPage("pages");
+  }, [setCurrentPage]);
 
   const handleEdit = (modele: ModelePage) => {
     setSelectedPage(modele);
