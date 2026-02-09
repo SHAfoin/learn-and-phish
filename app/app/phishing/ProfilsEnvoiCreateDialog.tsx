@@ -59,11 +59,13 @@ export function ProfilsEnvoiCreateDialog({
 
   const handleCreate = () => {
     // Fonction vide pour future intégration API (création)
+    //TODO: Appeler l'API POST /api/profils-envoi pour créer un nouveau profil d'envoi
     console.log({ nom, from, hote, username, password, type });
   };
 
   const handleUpdate = () => {
     // Fonction vide pour future intégration API (modification)
+    //TODO: Appeler l'API PUT /api/profils-envoi/{id} pour mettre à jour le profil d'envoi
     console.log({
       id: initialData?.id,
       nom,

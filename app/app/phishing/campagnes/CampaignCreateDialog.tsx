@@ -93,6 +93,7 @@ export function CampaignCreateDialog({
 
   const handleCreate = () => {
     // Fonction vide pour future intégration API (création)
+    //TODO: Appeler l'API POST /api/campagnes pour créer une nouvelle campagne
     console.log({
       nom,
       groupeId: Number(groupeId),
@@ -108,6 +109,7 @@ export function CampaignCreateDialog({
 
   const handleUpdate = () => {
     // Fonction vide pour future intégration API (modification)
+    //TODO: Appeler l'API PUT /api/campagnes/{id} pour mettre à jour la campagne
     console.log({
       id: initialData?.id,
       nom,

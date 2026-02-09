@@ -44,11 +44,13 @@ export function ModelePageCreateDialog({
 
   const handleCreate = () => {
     // Fonction vide pour future intégration API (création)
+    //TODO: Appeler l'API POST /api/modeles-pages pour créer un nouveau modèle de page
     console.log({ nom, urlRedirection, contenuHtml });
   };
 
   const handleUpdate = () => {
     // Fonction vide pour future intégration API (modification)
+    //TODO: Appeler l'API PUT /api/modeles-pages/{id} pour mettre à jour le modèle de page
     console.log({
       id: initialData?.id,
       nom,
