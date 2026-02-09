@@ -13,7 +13,7 @@ import { getUserById, getUserStatsById } from "@/lib/placeholder";
 import UserInfoCard from "./UserInfoCard";
 import UserProgressChart from "./UserProgressChart";
 import UserActivityTable from "./UserActivityTable";
-import UserExposureScore from "./UserExposureScore";
+import UserExposureScore from "../../../osint/UserExposureScore";
 import QuizResultsByCategory from "../../QuizResultsByCategory";
 import QuizResultsByDifficulty from "../../QuizResultsByDifficulty";
 import UserEngagementChart from "../../UserEngagementChart";

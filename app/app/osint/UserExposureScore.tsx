@@ -16,7 +16,7 @@ const chartConfig = {
   },
 };
 
-// Fonction pour déterminer la couleur en fonction du score
+// Fonction pour determiner la couleur en fonction du score
 const getColorForScore = (score: number): string => {
   if (score < 20) return "hsl(120, 70%, 50%)"; // Vert
   if (score < 40) return "hsl(60, 70%, 50%)"; // Jaune
