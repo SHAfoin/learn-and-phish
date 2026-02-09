@@ -17,6 +17,10 @@ interface QuizCategoryData {
   failure: number;
 }
 
+interface QuizResultsByCategoryProps {
+  data?: QuizCategoryData[];
+}
+
 // Simule un appel API pour récupérer les résultats par catégorie
 const getQuizResultsByCategory = async (): Promise<QuizCategoryData[]> => {
   // TODO: Implémenter l'appel API réel
@@ -48,11 +52,22 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function QuizResultsByCategory() {
-  const [data, setData] = useState<QuizCategoryData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function QuizResultsByCategory({
+  data: propData,
+}: QuizResultsByCategoryProps = {}) {
+  const [data, setData] = useState<QuizCategoryData[]>(propData || []);
+  const [isLoading, setIsLoading] = useState(!propData);
+  const hasData = data.length > 0;
 
   useEffect(() => {
+    // Si les données sont fournies en props, les utiliser directement
+    if (propData) {
+      setData(propData);
+      setIsLoading(false);
+      return;
+    }
+
+    // Sinon, récupérer les données par défaut
     // TODO: Implémenter l'appel API réel
     const fetchData = async () => {
       setIsLoading(true);
@@ -67,7 +82,7 @@ export default function QuizResultsByCategory() {
     };
 
     fetchData();
-  }, []);
+  }, [propData]);
 
   return (
     <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-6 overflow-hidden flex flex-col gap-4">
@@ -78,7 +93,7 @@ export default function QuizResultsByCategory() {
             <span className="text-neutral-500">Chargement...</span>
           </div>
         </div>
-      ) : (
+      ) : hasData ? (
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={data}>
             <CartesianGrid vertical={false} />
@@ -105,6 +120,10 @@ export default function QuizResultsByCategory() {
             />
           </BarChart>
         </ChartContainer>
+      ) : (
+        <div className="h-64 w-full flex items-center justify-center">
+          <span className="text-neutral-500">Aucune statistique disponible.</span>
+        </div>
       )}
     </div>
   );

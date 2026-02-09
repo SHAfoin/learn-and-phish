@@ -50,12 +50,33 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function UserEngagementChart() {
-  const [data, setData] = useState<UserEngagementData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface UserEngagementChartProps {
+  data?: UserEngagementData[];
+  title?: string;
+}
+
+export default function UserEngagementChart({
+  data: propData,
+  title = "Nombre d'utilisateurs actifs par période",
+}: UserEngagementChartProps = {}) {
+  const [data, setData] = useState<UserEngagementData[]>(propData || []);
+  const [isLoading, setIsLoading] = useState(!propData);
   const [totalUsers, setTotalUsers] = useState(0);
+  const hasData = data.length > 0;
 
   useEffect(() => {
+    // Si les données sont fournies en props, les utiliser directement
+    if (propData) {
+      setData(propData);
+      setIsLoading(false);
+      if (propData.length > 0) {
+        const lastEntry = propData[propData.length - 1];
+        setTotalUsers(lastEntry.activeUsers);
+      }
+      return;
+    }
+
+    // Sinon, récupérer les données par défaut
     // TODO: Implémenter l'appel API réel
     const fetchEngagement = async () => {
       setIsLoading(true);
@@ -76,14 +97,12 @@ export default function UserEngagementChart() {
     };
 
     fetchEngagement();
-  }, []);
+  }, [propData]);
 
   return (
     <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden">
       <div className="border-b border-neutral-300 flex items-center mb-5 h-18">
-        <p className="text-neutral-500 text-sm flex-1 p-5">
-          Nombre d'utilisateurs actifs durants les 2 derniers mois
-        </p>
+        <p className="text-neutral-500 text-sm flex-1 p-5">{title}</p>
 
         <div className="bg-neutral-100 border-l h-full border-neutral-300 py-4 px-8 flex justify-center items-end gap-4">
           {isLoading ? (
@@ -91,11 +110,13 @@ export default function UserEngagementChart() {
               <div className="w-4 h-4 border-2 border-ocean-600 border-t-transparent rounded-full animate-spin"></div>
               <span className="text-neutral-500 text-sm">Chargement...</span>
             </div>
-          ) : (
+          ) : hasData ? (
             <>
               <p className="text-ocean-950 font-bold text-4xl">{totalUsers}</p>
               <p className="text-neutral-500 text-md">inscrits au total</p>
             </>
+          ) : (
+            <p className="text-neutral-500 text-sm">Aucune statistique</p>
           )}
         </div>
       </div>
@@ -109,7 +130,7 @@ export default function UserEngagementChart() {
               </span>
             </div>
           </div>
-        ) : (
+        ) : hasData ? (
           <ChartContainer
             config={chartConfig}
             className="aspect-auto h-[250px] w-full"
@@ -173,6 +194,10 @@ export default function UserEngagementChart() {
               />
             </AreaChart>
           </ChartContainer>
+        ) : (
+          <div className="h-[250px] w-full flex items-center justify-center">
+            <span className="text-neutral-500">Aucune statistique disponible.</span>
+          </div>
         )}
       </div>
     </div>
