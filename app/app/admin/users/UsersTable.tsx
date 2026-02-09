@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Search, MoreHorizontalIcon } from "lucide-react";
+import Link from "next/link";
 import {
   Table,
   TableBody,
@@ -146,9 +147,21 @@ export default function UsersTable({ onEdit, onDelete }: UsersTableProps) {
             ) : (
               currentUsers.map((user) => (
                 <TableRow key={user.id}>
-                  <TableCell className="text-sm w-[20%]">{user.nom}</TableCell>
                   <TableCell className="text-sm w-[20%]">
-                    {user.prenom}
+                    <Link
+                      href={`/app/admin/users/${user.id}`}
+                      className="hover:underline"
+                    >
+                      {user.nom}
+                    </Link>
+                  </TableCell>
+                  <TableCell className="text-sm w-[20%]">
+                    <Link
+                      href={`/app/admin/users/${user.id}`}
+                      className="hover:underline"
+                    >
+                      {user.prenom}
+                    </Link>
                   </TableCell>
                   <TableCell className="text-sm w-[25%] truncate max-w-xs">
                     {user.email}

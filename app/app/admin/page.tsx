@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -20,8 +21,28 @@ import UsersContent from "./users/UsersContent";
 import TrainingContent from "./training/TrainingContent";
 
 export default function page() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const validTabs = useMemo(() => ["dashboard", "users", "training"], []);
   const [activeTab, setActiveTab] = useState("dashboard");
   const [timePeriod, setTimePeriod] = useState("Ce mois-ci");
+
+  useEffect(() => {
+    const tabParam = searchParams.get("tab");
+    if (tabParam && validTabs.includes(tabParam)) {
+      setActiveTab(tabParam);
+    } else {
+      setActiveTab("dashboard");
+    }
+  }, [searchParams, validTabs]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", value);
+    router.replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <div className="flex flex-col flex-1 gap-6 max-w-7xl mx-auto w-full px-4">
@@ -36,7 +57,7 @@ export default function page() {
       <div className="flex gap-6 items-start w-full justify-between">
         <Tabs
           value={activeTab}
-          onValueChange={setActiveTab}
+          onValueChange={handleTabChange}
           className="bg-neutral-50 rounded-[5px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] flex overflow-hidden"
         >
           <TabsList className="bg-transparent border-0 rounded-none flex gap-0">

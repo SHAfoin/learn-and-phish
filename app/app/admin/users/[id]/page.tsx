@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
       {/* Page Header with Back Button and Time Period Selector */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <Link href="/app/admin">
+          <Link href="/app/admin?tab=users">
             <img
               src="/svg/icons/arrow-blue.svg"
               alt="Flèche"
