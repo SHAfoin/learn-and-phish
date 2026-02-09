@@ -17,6 +17,7 @@ import QuizResultsByCategory from "./QuizResultsByCategory";
 import QuizResultsByDifficulty from "./QuizResultsByDifficulty";
 import RecentActivityTable from "./RecentActivityTable";
 import UsersContent from "./users/UsersContent";
+import TrainingContent from "./training/TrainingContent";
 
 export default function page() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -156,11 +157,7 @@ export default function page() {
       {/* Training Content */}
       {activeTab === "training" && (
         <div className="space-y-6">
-          <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-8">
-            <p className="text-neutral-400 text-center">
-              Section Formation - À implémenter
-            </p>
-          </div>
+          <TrainingContent />
         </div>
       )}
     </div>
