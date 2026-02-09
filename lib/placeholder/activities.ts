@@ -45,6 +45,24 @@ const activities: Activity[] = [
       "Parmi ces mots de passe, lequel est le plus efficace en situation...",
     result: { status: "Réussite", type: "success" },
   },
+  {
+    id: 5,
+    date: "02/10/2025 14:16",
+    user: "Zenitsu Karan",
+    activity: "Question",
+    title:
+      "Parmi ces mots de passe, lequel est le plus efficace en situation...",
+    result: { status: "Réussite", type: "success" },
+  },
+  {
+    id: 6,
+    date: "02/10/2025 14:16",
+    user: "Zenitsu Karan",
+    activity: "Question",
+    title:
+      "Parmi ces mots de passe, lequel est le plus efficace en situation...",
+    result: { status: "Réussite", type: "success" },
+  },
 ];
 
 // Simule un appel API avec un délai

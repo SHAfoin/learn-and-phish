@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -130,12 +131,14 @@ export default function page() {
               <h2 className="text-2xl font-bold text-ocean-950">
                 Dernière activité
               </h2>
-              <Button
-                variant="link"
-                className="text-ocean-850 text-sm font-normal"
-              >
-                Voir tous l'activité
-              </Button>
+              <Link href="/app/admin/recent-activity">
+                <Button
+                  variant="link"
+                  className="text-ocean-850 text-sm font-normal"
+                >
+                  Voir tous l'activité
+                </Button>
+              </Link>
             </div>
             <RecentActivityTable />
           </div>
