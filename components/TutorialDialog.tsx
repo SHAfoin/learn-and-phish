@@ -137,6 +137,42 @@ export default function TutorialDialog({
             },
           ],
         };
+      case "osint":
+        return {
+          title: "Guide de l'OSINT",
+          sections: [
+            {
+              title: "Qu'est-ce que l'OSINT ?",
+              content:
+                "OSINT (Open Source Intelligence) est la recherche et l'analyse d'informations publiquement accessibles sur internet. Cette page vous permet d'identifier les empreintes numériques de votre organisation sur diverses plateformes et d'évaluer votre exposition en ligne.",
+            },
+            {
+              title: "Score d'exposition",
+              content:
+                "Le score d'exposition mesure le niveau de visibilité et d'informations sensibles accessibles publiquement sur votre organisation. Un score faible (vert) indique une bonne hygiène numérique, tandis qu'un score élevé (rouge) suggère une exposition importante qui pourrait être exploitée par des attaquants.",
+            },
+            {
+              title: "Sites exposés",
+              content:
+                "Cette métrique indique le nombre de plateformes et sites web sur lesquels des informations relatives à votre organisation ont été détectées. Ces données peuvent inclure des profils sociaux, des documents publics, des configurations de serveurs, ou d'autres traces numériques.",
+            },
+            {
+              title: "Recherche et filtrage",
+              content:
+                "Utilisez le champ de recherche pour filtrer les résultats par domaine ou plateforme spécifique. Cela vous permet de concentrer votre analyse sur des sources particulières et d'identifier rapidement les zones à risque.",
+            },
+            {
+              title: "Lancer un nouveau scan",
+              content:
+                "Cliquez sur 'Nouveau scan' pour lancer une analyse actualisée de votre empreinte numérique. Les scans réguliers vous permettent de suivre l'évolution de votre exposition et de détecter rapidement l'apparition de nouvelles informations sensibles en ligne.",
+            },
+            {
+              title: "Utilité pour la sécurité",
+              content:
+                "En comprenant quelles informations sur votre organisation sont publiquement disponibles, vous pouvez mieux vous protéger contre les attaques de type ingénierie sociale et phishing. Les attaquants utilisent souvent l'OSINT pour collecter des informations et rendre leurs attaques plus crédibles.",
+            },
+          ],
+        };
       default:
         return {
           title: "Tutoriel",
