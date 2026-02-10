@@ -63,13 +63,13 @@ export default function QuizCompleted({ onRestart, onHome }: Props) {
             </div>
 
             <div className="flex flex-wrap gap-3 mt-2">
-              <Button
-                className="bg-[var(--color-ocean-800)] hover:bg-[var(--color-ocean-800)]/80 text-white"
+              <Button variant="default"
+                className="bg-[var(--color-ocean-800)] hover:bg-[var(--color-ocean-800)]/80 text-white rounded-[5px]"
                 onClick={onRestart}
               >
                 Recommencer
               </Button>
-              <Button variant="secondary" onClick={onHome}>
+              <Button variant="secondary" onClick={onHome} className="bg-white hover:bg-white/80 text-[var(--color-ocean-850)] border-input rounded-[5px]">
                 Retour à l’accueil
               </Button>
             </div>
