@@ -30,11 +30,7 @@ export default function QuizActivityChart({ data }: QuizActivityChartProps) {
   const hasData = data.length > 0;
 
   return (
-    <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-6">
-      <h3 className="text-xl font-bold text-ocean-950 mb-4">
-        Activité du quiz (30 derniers jours)
-      </h3>
-
+    <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] p-6 h-full">
       {hasData ? (
         <ChartContainer config={chartConfig} className="h-80 w-full">
           <BarChart accessibilityLayer data={data}>

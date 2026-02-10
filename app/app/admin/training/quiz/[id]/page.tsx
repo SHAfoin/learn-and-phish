@@ -49,20 +49,32 @@ export default async function Page({ params }: PageProps) {
       {/* Main Content */}
       <div className="flex flex-col gap-6 w-full">
         {/* Quiz Info Card */}
-        <QuizInfoCard quiz={quiz} />
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl text-ocean-950 font-bold">Informations</h2>
+          <QuizInfoCard quiz={quiz} />
+        </div>
 
         {/* Activity Chart and Stats Charts in flex row */}
         <div className="flex gap-6 w-full">
-          <div className="flex-1">
+          <div className="flex flex-col flex-1 gap-2">
+            <h2 className="text-2xl text-ocean-950 font-bold">
+              Activité du quiz
+            </h2>
             <QuizActivityChart data={stats.attemptsOverTime} />
           </div>
-          <div className="flex-1">
+          <div className="flex flex-col flex-1 gap-2">
+            <h2 className="text-2xl text-ocean-950 font-bold">Réussite</h2>
             <QuizStatsRadialCharts stats={stats} />
           </div>
         </div>
 
         {/* Questions Table */}
-        <QuestionsTable questions={questions} />
+        <div className="flex flex-col flex-1 gap-2">
+          <h2 className="text-2xl text-ocean-950 font-bold">
+            Questions du quiz
+          </h2>
+          <QuestionsTable questions={questions} />
+        </div>
       </div>
     </div>
   );

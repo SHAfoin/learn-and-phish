@@ -61,9 +61,6 @@ export default function QuestionsTable({ questions }: QuestionsTableProps) {
     <>
       <div className="bg-neutral-50 rounded-[15px] shadow-[2px_2px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden p-5">
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-ocean-950">
-            Questions du quiz
-          </h3>
           <p className="text-sm text-neutral-600 mt-1">
             {questions.length} question{questions.length > 1 ? "s" : ""} au
             total
