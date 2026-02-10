@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import { groupesOSINT, GroupeOSINT } from "@/lib/placeholder/osint";
 import { groupes } from "@/lib/placeholder";
+import { useTutorial } from "@/components/TutorialProvider";
 
 const chartConfig = {
   visitors: {
@@ -57,12 +58,18 @@ async function fetchOSINTData(): Promise<OSINTData> {
 }
 
 export default function OSINTContent() {
+  const { setCurrentPage } = useTutorial();
   const [searchDomain, setSearchDomain] = useState("");
   const [groupes, setGroupes] = useState<GroupeOSINT[]>([]);
   const [scoreExposition, setScoreExposition] = useState(0);
   const [nombreSitesExposés, setNombreSitesExposés] = useState(0);
   const [dateDernierScan, setDateDernierScan] = useState<Date | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Set the current page for tutorial
+  useEffect(() => {
+    setCurrentPage("osint");
+  }, [setCurrentPage]);
 
   // Charger les données au montage du composant
   useEffect(() => {

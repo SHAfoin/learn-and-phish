@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -45,8 +45,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTutorial } from "@/components/TutorialProvider";
 
 export default function page() {
+  const { setCurrentPage } = useTutorial();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
   const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
@@ -66,6 +68,10 @@ export default function page() {
   const [selectedProfil, setSelectedProfil] = useState<ProfilEnvoi | null>(
     null,
   );
+
+  useEffect(() => {
+    setCurrentPage("phishing");
+  }, [setCurrentPage]);
 
   const handleDeleteCampagne = (campagne: Campagne) => {
     setSelectedCampagne(campagne);

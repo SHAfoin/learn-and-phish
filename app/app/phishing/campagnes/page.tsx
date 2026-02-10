@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CampagnesTable from "@/app/app/phishing/campagnes/CampagnesTable";
 import Link from "next/link";
 import { Campagne, campagnes } from "@/lib/placeholder";
@@ -14,13 +14,19 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { useTutorial } from "@/components/TutorialProvider";
 
 export default function page() {
+  const { setCurrentPage } = useTutorial();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedCampagne, setSelectedCampagne] = useState<Campagne | null>(
     null,
   );
+
+  useEffect(() => {
+    setCurrentPage("campagnes");
+  }, [setCurrentPage]);
 
   const handleEdit = (campagne: Campagne) => {
     setSelectedCampagne(campagne);
