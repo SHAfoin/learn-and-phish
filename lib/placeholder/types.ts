@@ -76,3 +76,67 @@ export interface Groupe {
   date: string;
   utilisateurs: User[];
 }
+
+// TODO: Remplacer par un vrai appel API vers le backend
+export interface AppUser {
+  id: number;
+  nom: string;
+  prenom: string;
+  email: string;
+  role: string;
+  niveau: number;
+  derniereConnexion: string;
+  dateInscription?: string;
+}
+
+export interface QuizResultData {
+  name: string;
+  correct: number;
+  incorrect: number;
+}
+
+export interface ActivityChartData {
+  date: string;
+  userCount: number;
+}
+
+export interface Activity {
+  id: number;
+  date: string;
+  user: string;
+  activity: string;
+  title: string;
+  result: {
+    status: string;
+    type: "success" | "failure";
+  };
+}
+
+export interface UserStats {
+  userId: number;
+  activiteData: ActivityChartData[];
+  progression: number;
+  scoreExposition: number;
+  quizResultsByDifficulty: {
+    facile: { correct: number; incorrect: number };
+    moyen: { correct: number; incorrect: number };
+    difficile: { correct: number; incorrect: number };
+  };
+  quizResultsByCategory: QuizResultData[];
+  recentActivities: Activity[];
+}
+
+export interface SiteExpose {
+  id: string;
+  nom: string;
+  urlExposition?: string;
+}
+
+export interface OSINTScan {
+  id: string;
+  userId: number;
+  dateScan: Date;
+  scoreExposition: number;
+  sitesExposés: SiteExpose[];
+  statut: "en cours" | "terminé" | "échoué";
+}

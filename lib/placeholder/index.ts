@@ -5,3 +5,7 @@ export * from "./modeles-pages";
 export * from "./groupes";
 export * from "./profils-envoi";
 export * from "./osint";
+export * from "./activities";
+export * from "./users";
+export * from "./quizzes";
+export * from "./mondes";
