@@ -90,17 +90,10 @@ export default function QuizStatsRadialCharts({
                       >
                         <tspan
                           x={viewBox.cx}
-                          y={(viewBox.cy || 0) - 10}
+                          y={viewBox.cy || 0}
                           className="fill-foreground text-5xl font-bold"
                         >
                           {stats.tauxReussite}%
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 25}
-                          className="fill-neutral-500 text-sm"
-                        >
-                          {stats.tentativesReussies}/{stats.totalTentatives}
                         </tspan>
                       </text>
                     );
@@ -151,14 +144,14 @@ export default function QuizStatsRadialCharts({
                           y={(viewBox.cy || 0) - 10}
                           className="fill-foreground text-5xl font-bold"
                         >
-                          {stats.tauxCompletion}%
+                          {stats.tentativesTerminees}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 25}
                           className="fill-neutral-500 text-sm"
                         >
-                          {stats.tentativesTerminees}/{stats.totalTentatives}
+                          /{stats.totalTentatives}
                         </tspan>
                       </text>
                     );
