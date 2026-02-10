@@ -1,0 +1,8 @@
+.quizBackground {
+  min-height: 100dvh;
+  width: 100%;
+  background: radial-gradient(circle at top center, var(--color-ocean-800) 6%, var(--color-ocean-950) 94%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
