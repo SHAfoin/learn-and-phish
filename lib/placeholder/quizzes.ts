@@ -8,19 +8,7 @@ export type QuestionType =
   | "Phrase à compléter"
   | "QCM d'images";
 
-// Interface principale pour Quiz et Mondes
-export interface Formation {
-  id: number;
-  titre: string;
-  type: "Quiz" | "Monde";
-  difficulte: QuizDifficulte;
-  categorie: string;
-  description: string;
-  dateCreation: string;
-  nombreQuestions: number;
-}
-
-// Type Quiz pour compatibilité (sans le champ type car toujours "Quiz")
+// Interface pour les Quiz
 export interface Quiz {
   id: number;
   titre: string;
@@ -55,12 +43,11 @@ export interface QuizStats {
   attemptsOverTime: QuizAttemptData[];
 }
 
-// Données mock - Formations (Quiz et Mondes)
-export const formations: Formation[] = [
+// Données mock - Quiz
+export const quizzes: Quiz[] = [
   {
     id: 1,
     titre: "Comment gérer correctement ses mots de passes ?",
-    type: "Quiz",
     difficulte: "Facile",
     categorie: "Mots de passe",
     description:
@@ -69,20 +56,8 @@ export const formations: Formation[] = [
     nombreQuestions: 8,
   },
   {
-    id: 2,
-    titre: "En route pour la pêche !",
-    type: "Monde",
-    difficulte: "Facile",
-    categorie: "Introduction",
-    description:
-      "Découvrez le monde du phishing à travers une aventure interactive. Apprenez les bases de la sécurité en ligne tout en progressant dans un univers ludique.",
-    dateCreation: "10/01/2025",
-    nombreQuestions: 5,
-  },
-  {
     id: 3,
     titre: "L'art du Vishing",
-    type: "Quiz",
     difficulte: "Difficile",
     categorie: "Phishing",
     description:
@@ -93,7 +68,6 @@ export const formations: Formation[] = [
   {
     id: 4,
     titre: "Reconnaître les emails suspects",
-    type: "Quiz",
     difficulte: "Moyen",
     categorie: "Email",
     description:
@@ -102,20 +76,8 @@ export const formations: Formation[] = [
     nombreQuestions: 10,
   },
   {
-    id: 5,
-    titre: "Protection des données personnelles",
-    type: "Monde",
-    difficulte: "Moyen",
-    categorie: "RGPD",
-    description:
-      "Explorez le monde du RGPD et de la protection des données à travers des scénarios interactifs. Maîtrisez les concepts clés de la confidentialité et de la sécurité des données.",
-    dateCreation: "25/01/2025",
-    nombreQuestions: 7,
-  },
-  {
     id: 6,
     titre: "Les techniques de social engineering",
-    type: "Quiz",
     difficulte: "Difficile",
     categorie: "Social Engineering",
     description:
@@ -126,7 +88,6 @@ export const formations: Formation[] = [
   {
     id: 7,
     titre: "Sécurité des réseaux WiFi",
-    type: "Quiz",
     difficulte: "Moyen",
     categorie: "Réseau",
     description:
@@ -135,20 +96,8 @@ export const formations: Formation[] = [
     nombreQuestions: 9,
   },
   {
-    id: 8,
-    titre: "Le monde de la cybersécurité",
-    type: "Monde",
-    difficulte: "Facile",
-    categorie: "Introduction",
-    description:
-      "Partez à l'aventure dans l'univers de la cybersécurité. Découvrez les concepts fondamentaux à travers des missions interactives et progressives.",
-    dateCreation: "08/01/2025",
-    nombreQuestions: 6,
-  },
-  {
     id: 9,
     titre: "Authentification à deux facteurs",
-    type: "Quiz",
     difficulte: "Facile",
     categorie: "Authentification",
     description:
@@ -159,7 +108,6 @@ export const formations: Formation[] = [
   {
     id: 10,
     titre: "Ransomware et malwares",
-    type: "Quiz",
     difficulte: "Difficile",
     categorie: "Malware",
     description:
@@ -168,20 +116,8 @@ export const formations: Formation[] = [
     nombreQuestions: 13,
   },
   {
-    id: 11,
-    titre: "Voyage dans les attaques web",
-    type: "Monde",
-    difficulte: "Difficile",
-    categorie: "Web Security",
-    description:
-      "Explorez les différentes techniques d'attaques web à travers des challenges interactifs. Apprenez à vous défendre contre XSS, SQL injection et plus encore.",
-    dateCreation: "22/02/2025",
-    nombreQuestions: 10,
-  },
-  {
     id: 12,
     titre: "La sécurité mobile",
-    type: "Quiz",
     difficulte: "Moyen",
     categorie: "Mobile",
     description:
@@ -597,15 +533,20 @@ function generateAttemptData(quizId: number): QuizAttemptData[] {
 }
 
 // Mock functions
-export async function getFormations(): Promise<Formation[]> {
+export async function getQuizzes(): Promise<Quiz[]> {
   // TODO: Implémenter l'appel API réel
-  // return fetch('/api/formations').then(res => res.json());
+  // return fetch('/api/quizzes').then(res => res.json());
 
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(formations);
+      resolve(quizzes);
     }, 800); // Simule un délai de 800ms
   });
+}
+
+export async function getFormations(): Promise<Quiz[]> {
+  // Deprecated: use getQuizzes() instead
+  return getQuizzes();
 }
 
 export async function getQuizById(id: number): Promise<Quiz | null> {
@@ -613,25 +554,10 @@ export async function getQuizById(id: number): Promise<Quiz | null> {
   // Simuler un délai d'API
   await new Promise((resolve) => setTimeout(resolve, 600));
 
-  // Récupérer la formation correspondante
-  const formation = formations.find((f) => f.id === id && f.type === "Quiz");
+  // Récupérer le quiz correspondant
+  const quiz = quizzes.find((q) => q.id === id);
 
-  if (!formation) {
-    return null;
-  }
-
-  // Transformer la Formation en Quiz (format sans le champ type)
-  const quiz: Quiz = {
-    id: formation.id,
-    titre: formation.titre,
-    description: formation.description,
-    difficulte: formation.difficulte,
-    categorie: formation.categorie,
-    dateCreation: formation.dateCreation,
-    nombreQuestions: formation.nombreQuestions,
-  };
-
-  return quiz;
+  return quiz || null;
 }
 
 export async function getQuizQuestions(quizId: number): Promise<Question[]> {

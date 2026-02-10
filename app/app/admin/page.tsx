@@ -63,19 +63,19 @@ export default function page() {
           <TabsList className="bg-transparent border-0 rounded-none flex gap-0">
             <TabsTrigger
               value="dashboard"
-              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:bg-ocean-800! data-[state=active]:text-white! text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Tableau de bord
             </TabsTrigger>
             <TabsTrigger
               value="users"
-              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:bg-ocean-800! data-[state=active]:text-white! text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Utilisateurs
             </TabsTrigger>
             <TabsTrigger
               value="training"
-              className="data-[state=active]:!bg-ocean-800 data-[state=active]:!text-white text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
+              className="data-[state=active]:bg-ocean-800! data-[state=active]:text-white! text-ocean-950 border-0 rounded-none px-8 py-2 font-semibold text-sm"
             >
               Formation
             </TabsTrigger>

@@ -8,3 +8,4 @@ export * from "./osint";
 export * from "./activities";
 export * from "./users";
 export * from "./quizzes";
+export * from "./mondes";
