@@ -7,12 +7,24 @@ import { Search } from "lucide-react";
 import { osintScans } from "@/lib/placeholder/osint";
 import { OSINTScan, SiteExpose } from "@/lib/placeholder/types";
 import UserExposureScore from "./UserExposureScore";
+import {
+  RadialBarChart,
+  RadialBar,
+  PolarRadiusAxis,
+  Label,
+  PolarGrid,
+} from "recharts";
+import { groupesOSINT, GroupeOSINT } from "@/lib/placeholder/osint";
+import { groupes } from "@/lib/placeholder";
+import { useTutorial } from "@/components/TutorialProvider";
+
 
 // Fonction pour récupérer le dernier scan OSINT d'un utilisateur
 // À l'avenir, cette fonction fera un appel API
 async function fetchLastOSINTScan(userId: number): Promise<OSINTScan | null> {
   // Simuler un délai d'API
   await new Promise((resolve) => setTimeout(resolve, 1000));
+
 
   // TODO: Implémenter l'appel API au backend
   // const response = await fetch(`/api/osint/scans/latest?userId=${userId}`);
@@ -46,6 +58,7 @@ async function lancerNouveauScan(userId: number): Promise<void> {
 }
 
 export default function OSINTContent() {
+  const { setCurrentPage } = useTutorial();
   const [searchDomain, setSearchDomain] = useState("");
   const [sitesExposés, setSitesExposés] = useState<SiteExpose[]>([]);
   const [scoreExposition, setScoreExposition] = useState(0);
@@ -55,8 +68,15 @@ export default function OSINTContent() {
   >("terminé");
   const [isLoading, setIsLoading] = useState(true);
 
+
   // TODO: Récupérer l'ID utilisateur depuis le contexte d'authentification
   const currentUserId = 1;
+
+  // Set the current page for tutorial
+  useEffect(() => {
+    setCurrentPage("osint");
+  }, [setCurrentPage]);
+
 
   // Charger les données au montage du composant
   useEffect(() => {
@@ -83,6 +103,7 @@ export default function OSINTContent() {
 
   // Fonction pour lancer un nouveau scan
   const handleNouveauScan = async () => {
+
     try {
       await lancerNouveauScan(currentUserId);
       // Recharger les données après le scan
@@ -96,6 +117,7 @@ export default function OSINTContent() {
     } catch (error) {
       console.error("Erreur lors du lancement du scan:", error);
     }
+
   };
 
   // Filtrer les sites exposés selon la recherche

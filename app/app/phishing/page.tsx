@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -45,8 +45,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTutorial } from "@/components/TutorialProvider";
 
 export default function page() {
+  const { setCurrentPage } = useTutorial();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMailDialogOpen, setIsMailDialogOpen] = useState(false);
   const [isPageDialogOpen, setIsPageDialogOpen] = useState(false);
@@ -66,6 +68,10 @@ export default function page() {
   const [selectedProfil, setSelectedProfil] = useState<ProfilEnvoi | null>(
     null,
   );
+
+  useEffect(() => {
+    setCurrentPage("phishing");
+  }, [setCurrentPage]);
 
   const handleDeleteCampagne = (campagne: Campagne) => {
     setSelectedCampagne(campagne);
@@ -94,30 +100,35 @@ export default function page() {
 
   const confirmDeleteCampagne = () => {
     if (!selectedCampagne) return;
+    //TODO: Appeler l'API DELETE /api/campagnes/{id} pour supprimer la campagne
     console.log(selectedCampagne);
     setIsDeleteCampagneOpen(false);
   };
 
   const confirmDeleteMail = () => {
     if (!selectedMail) return;
+    //TODO: Appeler l'API DELETE /api/modeles-mails/{id} pour supprimer le modèle de mail
     console.log(selectedMail);
     setIsDeleteMailOpen(false);
   };
 
   const confirmDeletePage = () => {
     if (!selectedPage) return;
+    //TODO: Appeler l'API DELETE /api/modeles-pages/{id} pour supprimer le modèle de page
     console.log(selectedPage);
     setIsDeletePageOpen(false);
   };
 
   const confirmDeleteGroupe = () => {
     if (!selectedGroupe) return;
+    //TODO: Appeler l'API DELETE /api/groupes/{id} pour supprimer le groupe
     console.log(selectedGroupe);
     setIsDeleteGroupeOpen(false);
   };
 
   const confirmDeleteProfil = () => {
     if (!selectedProfil) return;
+    //TODO: Appeler l'API DELETE /api/profils-envoi/{id} pour supprimer le profil d'envoi
     console.log(selectedProfil);
     setIsDeleteProfilOpen(false);
   };
